@@ -17,7 +17,13 @@
         "languages": [{
             "id": "melrose",
             "extensions": [".mel", ".melrose"],
-            "aliases": ["Melrose"]
+            "aliases": ["Melrose"],
+            "configuration": "./language-configuration.json"
+        }],
+        "x-grammars": [{
+            "language": "melrose",
+            "scopeName": "text.melrose.basic",
+            "path": "./syntaxes/melrose.tmLanguage.json"
         }],
         "snippets": [{
             "language": "melrose",
@@ -27,7 +33,7 @@
                 "id": "melrose.executedBackground",
                 "description": "Background decoration color for executed lines",
                 "defaults": {
-                    "dark": "#0d00ff55",
+                    "dark": "#00ffa655",
                     "light": "#00d9ff55",
                     "highContrast": "#b3ff00ba"
                 }
