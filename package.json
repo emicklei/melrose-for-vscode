@@ -14,6 +14,15 @@
     ],
     "main": "./out/extension.js",
     "contributes": {
+        "languages": [{
+            "id": "melrose",
+            "extensions": [".mel", ".melrose"],
+            "aliases": ["Melrose"]
+        }],
+        "snippets": [{
+            "language": "melrose",
+            "path": "./snippets/snippets.json"
+        }],
         "colors": [{
                 "id": "melrose.executedBackground",
                 "description": "Background decoration color for executed lines",
@@ -27,8 +36,8 @@
                 "id": "melrose.executeFailBackground",
                 "description": "Background decoration color for executed lines that failed",
                 "defaults": {
-                    "dark": "#c72e1355",
-                    "light": "#ce381d55",
+                    "dark": "#e03112cb",
+                    "light": "#ce381dbe",
                     "highContrast": "#ff0000f3"
                 }
             }

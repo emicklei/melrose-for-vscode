@@ -78,24 +78,28 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.showInformationMessage("No response from Melrose; did you start it?");
 				console.error(err);
 			}
-		});
-		// finally
-		if (success) {
-			activeEditor.setDecorations(executeOkDecorationType, rangeExecuted);
-		} else {
-			console.log('set fail deco');
-			activeEditor.setDecorations(executeFailDecorationType, rangeExecuted);
-		}
-		// clean up a bit later
-		setTimeout(() => {
+		}).finally(() => {
 			let activeEditor = vscode.window.activeTextEditor;
 			if (!activeEditor) {
 				// not in editor
+				return;
+			}
+			if (success) {
+				activeEditor.setDecorations(executeOkDecorationType, rangeExecuted);
 			} else {
+				activeEditor.setDecorations(executeFailDecorationType, rangeExecuted);
+			}
+			// clean up a bit later
+			setTimeout(() => {
+				let activeEditor = vscode.window.activeTextEditor;
+				if (!activeEditor) {
+					// not in editor
+					return;
+				}
 				activeEditor.setDecorations(executeOkDecorationType, []);
 				activeEditor.setDecorations(executeFailDecorationType, []);
-			}
-		}, 1000);
+			}, 1000);
+		});
 	});
 
 	context.subscriptions.push(disposable);
