@@ -4,9 +4,9 @@ import * as vscode from 'vscode';
 // https://www.npmjs.com/package/axios
 // https://github.com/axios/axios
 import {
-	AxiosResponse, 
+	AxiosResponse,
 	AxiosError
-	} from 'axios';
+} from 'axios';
 const axios = require('axios');
 
 // this method is called when your extension is activated
@@ -18,25 +18,14 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "melrose-for-vscode" is now active!');
 
-	const noDecorationType = vscode.window.createTextEditorDecorationType({});
-	// create a decorator type that we use to decorate small numbers
-	const smallNumberDecorationType = vscode.window.createTextEditorDecorationType({
-		borderWidth: '1px',
-		borderStyle: 'solid',
-		overviewRulerColor: 'blue',
-		overviewRulerLane: vscode.OverviewRulerLane.Right,
-		light: {
-			// this color will be used in light color themes
-			borderColor: 'darkblue'
-		},
+	const executeOkDecorationType = vscode.window.createTextEditorDecorationType({
 		dark: {
-			// this color will be used in dark color themes
-			borderColor: 'lightblue'
+			backgroundColor: { id: 'melrose.executedBackground' }
 		}
 	});
-	const executedDecorationType = vscode.window.createTextEditorDecorationType({
-		dark:{
-			backgroundColor: { id: 'melrose.executedBackground' }
+	const executeFailDecorationType = vscode.window.createTextEditorDecorationType({
+		dark: {
+			backgroundColor: { id: 'melrose.executeFailBackground' }
 		}
 	});
 
@@ -54,50 +43,63 @@ export function activate(context: vscode.ExtensionContext) {
 		// if text is selection then use that
 		// else use the line at which the cursor is at
 		let text = '';
-		let smallNumbers: vscode.DecorationOptions[] = [];
+		let rangeExecuted: vscode.DecorationOptions[] = [];
 		let selection = activeEditor.selection;
 		if (selection.isEmpty) {
 			// no selection, take current line content
 			text = activeEditor.document.lineAt(selection.active.line).text;
-			
 			const position = activeEditor.selection.active;
-			var startPos = position.with(position.line, 0);
-			var endPos = position.with(position.line, text.length);
-			smallNumbers.push({ range: new vscode.Range(startPos, endPos)});
-			activeEditor.setDecorations(executedDecorationType, smallNumbers);
-
-		} else {			
-			text =  activeEditor.document.getText(selection);
+			const startPos = position.with(position.line, 0);
+			const endPos = position.with(position.line, text.length);
+			rangeExecuted.push({ range: new vscode.Range(startPos, endPos) });
+		} else {
+			text = activeEditor.document.getText(selection);
 		}
 		if (text.length === 0) {
 			// nothing to post
 			return;
 		}
+		var success = true;
 		axios({
-				method: 'post',
-				url: 'http://localhost:8118/v1/statements',  // ?trace=true
-				data: text,
-				headers: {'Content-Type': 'text/plain; charset=UTF-8'}
-		}).then((response:AxiosResponse<any>) => {		  	  
+			method: 'post',
+			url: 'http://localhost:8118/v1/statements',  // ?trace=true
+			data: text,
+			headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
+		}).then((response: AxiosResponse<any>) => {
 			if (response.data !== null) {
 				console.log(response.data);
 			}
-		}).catch((err:AxiosError<any>) => {
-			if (err.response !== undefined){
+		}).catch((err: AxiosError<any>) => {
+			success = false;
+			if (err.response !== undefined) {
 				console.error(err.response.data.message);
 				console.error(err.response.data);
 			} else {
+				vscode.window.showInformationMessage("No response from Melrose; did you start it?");
 				console.error(err);
 			}
 		});
 		// finally
-		activeEditor.setDecorations(noDecorationType, smallNumbers);
-
-		// vscode.window.showInformationMessage('Hello World from Melrose for VSCode!');
+		if (success) {
+			activeEditor.setDecorations(executeOkDecorationType, rangeExecuted);
+		} else {
+			console.log('set fail deco');
+			activeEditor.setDecorations(executeFailDecorationType, rangeExecuted);
+		}
+		// clean up a bit later
+		setTimeout(() => {
+			let activeEditor = vscode.window.activeTextEditor;
+			if (!activeEditor) {
+				// not in editor
+			} else {
+				activeEditor.setDecorations(executeOkDecorationType, []);
+				activeEditor.setDecorations(executeFailDecorationType, []);
+			}
+		}, 1000);
 	});
 
 	context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
