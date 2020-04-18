@@ -2,12 +2,12 @@
     "name": "melrose-for-vscode",
     "displayName": "Melrose for VSCode",
     "description": "Interactive music coding with Melrose",
-    "version": "0.0.1",
+    "version": "v1.0.0",
     "engines": {
         "vscode": "^1.44.0"
     },
     "categories": [
-        "Other"
+        "Programming Languages"
     ],
     "activationEvents": [
         "onCommand:melrose-for-vscode.helloWorld"

@@ -4,6 +4,6 @@ All notable changes to the "melrose-for-vscode" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [v0.1.0]
+## [v1.0.0]
 
 - Initial release

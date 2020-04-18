@@ -98,7 +98,7 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 				activeEditor.setDecorations(executeOkDecorationType, []);
 				activeEditor.setDecorations(executeFailDecorationType, []);
-			}, 1000);
+			}, 200);
 		});
 	});
 
