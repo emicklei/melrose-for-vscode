@@ -54,6 +54,7 @@ export function activate(context: vscode.ExtensionContext) {
 			rangeExecuted.push({ range: new vscode.Range(startPos, endPos) });
 		} else {
 			text = activeEditor.document.getText(selection);
+			rangeExecuted.push({ range: new vscode.Range(selection.start, selection.end) });
 		}
 		if (text.length === 0) {
 			// nothing to post

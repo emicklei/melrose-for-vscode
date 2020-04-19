@@ -20,10 +20,10 @@
             "aliases": ["Melrose"],
             "configuration": "./language-configuration.json"
         }],
-        "x-grammars": [{
+        "grammars": [{
             "language": "melrose",
-            "scopeName": "text.melrose.basic",
-            "path": "./syntaxes/melrose.tmLanguage.json"
+            "path": "./syntaxes/melrose.tmGrammar.json",
+            "scopeName": "source.melrose"
         }],
         "snippets": [{
             "language": "melrose",
