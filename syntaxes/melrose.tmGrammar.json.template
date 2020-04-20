@@ -6,7 +6,7 @@
             "patterns": [{ "include": "#letter" }, { "include": "#paren-expression" }]
         },
         "letter": {
-            "match": "indexmap|pitch|join|bpm|velocity|loop|channel|chord|repeat|play|serial|flatten|reverse|echo|go|parallel|stop|interval|sequence|note|record|undynamic|run",
+            "match": "$Keywords",
             "name": "keyword.letter"
         },
         "paren-expression": {
