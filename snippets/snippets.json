@@ -1,164 +1,170 @@
 {
-    "Beats Per Minute": {
-        "prefix": "bpm",
-        "body": [
-            "bpm(${1:beats-per-minute})"
-        ],
-        "description": "set the Beats Per Minute [1..300], default is 120"
-    },
-    "Chord creator": {
-        "prefix": "cho",
-        "body": [
-            "chord('${1:note}')"
-        ],
-        "description": "create a Chord"
-    },
-    "Flatten modifier": {
-        "prefix": "flat",
-        "body": [
-            "flatten(${1:sequenceable})"
-        ],
-        "description": "flatten all operations on a musical object to a new sequence"
-    },
-    "Integer Index Map modifier": {
-        "prefix": "ind",
-        "body": [
-            "indexmap('${0:space-separated-1-based-indices}',${1:sequenceable})"
-        ],
-        "description": "create a Mapper of Notes by index (1-based)"
-    },
-    "Integer Interval creator": {
-        "prefix": "int",
-        "body": [
-            "interval(${1:from},${2:to},${3:by})"
-        ],
-        "description": "create an integer repeating interval (from,to,by)"
-    },
-    "Join modifier": {
-        "prefix": "joi",
-        "body": [
-            "join(${1:first},${2:second})"
-        ],
-        "description": "join two or more musical objects"
-    },
-    "Loop creator": {
-        "prefix": "loo",
-        "body": [
-            "loop(${1:sequenceable})",
-            "stop(${2:variablename})"
-        ],
-        "description": "create a new loop"
-    },
-    "Loop runner": {
-        "prefix": "run",
-        "body": [
-            "run(${1:loop})"
-        ],
-        "description": "start loop(s). Ignore if it was running."
-    },
-    "Loop stopper": {
-        "prefix": "sto",
-        "body": [
-            "stop(${1:loop-or-empty})"
-        ],
-        "description": "stop running loop(s). Ignore if it was stopped."
-    },
-    "MIDI channel modifier": {
-        "prefix": "chan",
-        "body": [
-            "channel(${1:number},${2:sequenceable})"
-        ],
-        "description": "select a MIDI channel, must be in [0..16]"
-    },
-    "Note creator": {
-        "prefix": "no",
-        "body": [
-            "note('${1:letter}')"
-        ],
-        "description": "Note, e.g. C 2G#5. ="
-    },
-    "Parallel modifier": {
-        "prefix": "par",
-        "body": [
-            "parallel(${1:sequenceable})"
-        ],
-        "description": "create a new sequence in which all notes of a musical object will be played in parallel"
-    },
-    "Pitch modifier": {
-        "prefix": "pit",
-        "body": [
-            "pitch(${1:semitones},${2:sequenceable})"
-        ],
-        "description": "change the pitch with a delta of semitones"
-    },
-    "Player (background)": {
-        "prefix": "go",
-        "body": [
-            "go(${1:sequenceable})"
-        ],
-        "description": "play all musical objects in parallel"
-    },
-    "Player (foreground)": {
-        "prefix": "pla",
-        "body": [
-            "play(${1:sequenceable})"
-        ],
-        "description": "play musical objects such as Note,Chord,Sequence,..."
-    },
-    "Recorder": {
-        "prefix": "rec",
-        "body": [
-            "record(${1:input-device-id},${1:seconds-inactivity})"
-        ],
-        "description": "creates a recorded sequence of notes from device ID and stop after T seconds of inactivity"
-    },
-    "Repeat modifier": {
-        "prefix": "rep",
-        "body": [
-            "repeat(${1:times},${2:sequenceable})"
-        ],
-        "description": "repeat the musical object a number of times"
-    },
-    "Reverse modifier": {
-        "prefix": "rev",
-        "body": [
-            "reverse(${1:sequenceable})"
-        ],
-        "description": "reverse the (groups of) notes in a sequence"
-    },
-    "Sequence creator": {
-        "prefix": "seq",
-        "body": [
-            "sequence('${1:space-separated-notes}')"
-        ],
-        "description": "create a Sequence from a string of notes"
-    },
-    "Serial modifier": {
-        "prefix": "ser",
-        "body": [
-            "serial(${1:sequenceable})"
-        ],
-        "description": "serialise any parallelisation of notes in a musical object"
-    },
-    "Undo Dynamic modifier": {
-        "prefix": "und",
-        "body": [
-            "undynamic(${1:sequenceable})"
-        ],
-        "description": "undynamic all the notes in a musical object"
-    },
-    "controls softness": {
-        "prefix": "vel",
-        "body": [
-            "velocity(${1:velocity})"
-        ],
-        "description": "set the base velocity [1..127], default is 70"
-    },
-    "the notes being played": {
-        "prefix": "ech",
-        "body": [
-            "echo(${0:true|false})"
-        ],
-        "description": "Echo the notes being played (default is true)"
-    }
+	"Beats Per Minute": {
+		"prefix": "bpm",
+		"body": [
+			"bpm(${1:beats-per-minute})"
+		],
+		"description": "set the Beats Per Minute [1..300]; default is 120"
+	},
+	"Beats in a Bar": {
+		"prefix": "biab",
+		"body": [
+			"biab(${1:beats-in-a-bar})"
+		],
+		"description": "set the Beats in a Bar [1..6]; default is 4"
+	},
+	"Chord creator": {
+		"prefix": "cho",
+		"body": [
+			"chord('${1:note}')"
+		],
+		"description": "create a Chord"
+	},
+	"Flatten modifier": {
+		"prefix": "flat",
+		"body": [
+			"flatten(${1:sequenceable})"
+		],
+		"description": "flatten all operations on a musical object to a new sequence"
+	},
+	"Integer Index Map modifier": {
+		"prefix": "ind",
+		"body": [
+			"indexmap('${1:space-separated-1-based-indices}',${2:sequenceable})"
+		],
+		"description": "create a Mapper of Notes by index (1-based)"
+	},
+	"Integer Interval creator. Repeats on default": {
+		"prefix": "int",
+		"body": [
+			"interval(${1:from},${2:to},${3:by})"
+		],
+		"description": "create an integer repeating interval (from,to,by)"
+	},
+	"Join modifier": {
+		"prefix": "joi",
+		"body": [
+			"join(${1:first},${2:second})"
+		],
+		"description": "join two or more musical objects"
+	},
+	"Loop creator ; must be assigned to a variable": {
+		"prefix": "loo",
+		"body": [
+			"${1:name} = loop(${1:object}) // end(${1:name})"
+		],
+		"description": "create a new loop"
+	},
+	"Loop runner": {
+		"prefix": "beg",
+		"body": [
+			"begin(${1:loop})"
+		],
+		"description": "begin loop(s). Ignore if it was running."
+	},
+	"MIDI channel modifier ; must be a top-level modifier": {
+		"prefix": "chan",
+		"body": [
+			"channel(${1:number},${2:sequenceable})"
+		],
+		"description": "select a MIDI channel, must be in [0..16]"
+	},
+	"Note creator": {
+		"prefix": "no",
+		"body": [
+			"note('${1:letter}')"
+		],
+		"description": "create a Note from the note notation"
+	},
+	"Parallel modifier": {
+		"prefix": "par",
+		"body": [
+			"parallel(${1:sequenceable})"
+		],
+		"description": "create a new sequence in which all notes of a musical object are synched in time"
+	},
+	"Pitch modifier": {
+		"prefix": "pit",
+		"body": [
+			"pitch(${1:semitones},${2:sequenceable})"
+		],
+		"description": "change the pitch with a delta of semitones"
+	},
+	"Player (background)": {
+		"prefix": "go",
+		"body": [
+			"go(${1:sequenceable})"
+		],
+		"description": "play all musical objects in parallel"
+	},
+	"Player (foreground)": {
+		"prefix": "pla",
+		"body": [
+			"play(${1:sequenceable})"
+		],
+		"description": "play musical objects such as Note,Chord,Sequence,..."
+	},
+	"Recorder": {
+		"prefix": "rec",
+		"body": [
+			"record(${1:input-device-id},${1:seconds-inactivity})"
+		],
+		"description": "creates a recorded sequence of notes from a MIDI device"
+	},
+	"Repeat modifier": {
+		"prefix": "rep",
+		"body": [
+			"repeat(${1:times},${2:sequenceable})"
+		],
+		"description": "repeat the musical object a number of times"
+	},
+	"Reverse modifier": {
+		"prefix": "rev",
+		"body": [
+			"reverse(${1:sequenceable})"
+		],
+		"description": "reverse the (groups of) notes in a sequence"
+	},
+	"Scale creator": {
+		"prefix": "sc",
+		"body": [
+			"scale('${1:letter}')"
+		],
+		"description": ""
+	},
+	"Sequence creator": {
+		"prefix": "seq",
+		"body": [
+			"sequence('${1:space-separated-notes}')"
+		],
+		"description": "create a Sequence from (space separated) notes"
+	},
+	"Serial modifier": {
+		"prefix": "ser",
+		"body": [
+			"serial(${1:sequenceable})"
+		],
+		"description": "serialise any parallelisation of notes in a musical object"
+	},
+	"Undo dynamic modifier": {
+		"prefix": "und",
+		"body": [
+			"undynamic(${1:sequenceable})"
+		],
+		"description": "undynamic all the notes in a musical object"
+	},
+	"controls softness": {
+		"prefix": "vel",
+		"body": [
+			"velocity(${1:velocity})"
+		],
+		"description": "set the base velocity [1..127]; default is 70"
+	},
+	"the notes being played": {
+		"prefix": "ech",
+		"body": [
+			"echo(${0:true|false})"
+		],
+		"description": "echo the notes being played; default is true"
+	}
 }

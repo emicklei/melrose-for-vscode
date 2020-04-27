@@ -2,7 +2,9 @@
     "name": "melrose-for-vscode",
     "displayName": "Melrose for VSCode",
     "description": "Interactive music coding with Melrose",
-    "version": "v1.0.0",
+    "version": "1.0.0",
+    "publisher": "ErnestMicklei",
+    "repository": "https://github.com/emicklei/melrose-for-vscode",
     "engines": {
         "vscode": "^1.44.0"
     },
