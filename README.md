@@ -8,9 +8,11 @@ A statement is evaluated by using the shortcut `cmd+E` and takes the content of 
 ## Features
 
 - direct evaluation of `melrose` expressions using `cmd+E`
+- direct play of `melrose` expressions using `cmd+3`
 - syntax highlighting of reserved expression keywords
 - visual feedback of the success of evaluation
     - flash green means OK
+    - flash blue means PLAY
     - flash red means ERROR
 
 ## Requirements

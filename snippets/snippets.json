@@ -20,6 +20,13 @@
 		],
 		"description": "create a Chord"
 	},
+	"Chord widener": {
+		"prefix": "wid",
+		"body": [
+			"widechord('${1:chord}')"
+		],
+		"description": "make a Chord wider"
+	},
 	"Flatten modifier": {
 		"prefix": "flat",
 		"body": [
@@ -27,19 +34,26 @@
 		],
 		"description": "flatten all operations on a musical object to a new sequence"
 	},
-	"Integer Index Map modifier": {
-		"prefix": "ind",
-		"body": [
-			"indexmap('${1:space-separated-1-based-indices}',${2:sequenceable})"
-		],
-		"description": "create a Mapper of Notes by index (1-based)"
-	},
 	"Integer Interval creator. Repeats on default": {
 		"prefix": "int",
 		"body": [
 			"interval(${1:from},${2:to},${3:by})"
 		],
 		"description": "create an integer repeating interval (from,to,by)"
+	},
+	"Integer Sequence Map modifier": {
+		"prefix": "ind",
+		"body": [
+			"sequencemap('${1:space-separated-1-based-indices}',${2:sequenceable})"
+		],
+		"description": "create a Mapper of sequence notes by index (1-based)"
+	},
+	"Join mapper": {
+		"prefix": "joinm",
+		"body": [
+			"joinmain('${1:indices}',${2:join})"
+		],
+		"description": ""
 	},
 	"Join modifier": {
 		"prefix": "joi",
@@ -51,9 +65,9 @@
 	"Loop creator ; must be assigned to a variable": {
 		"prefix": "loo",
 		"body": [
-			"${1:name} = loop(${1:object}) // end(${1:name})"
+			"lp_${1:object} = loop(${1:object})"
 		],
-		"description": "create a new loop"
+		"description": "create a new loop from one or more objects"
 	},
 	"Loop runner": {
 		"prefix": "beg",
@@ -75,6 +89,13 @@
 			"note('${1:letter}')"
 		],
 		"description": "create a Note from the note notation"
+	},
+	"Octave modifier": {
+		"prefix": "oct",
+		"body": [
+			"octave(${1:offet},${2:sequenceable})"
+		],
+		"description": "changes the pitch of notes by steps of 12 semitones"
 	},
 	"Parallel modifier": {
 		"prefix": "par",
@@ -130,7 +151,7 @@
 		"body": [
 			"scale('${1:letter}')"
 		],
-		"description": ""
+		"description": "create a Scale using a starting Note and type indicator (Major,minor)"
 	},
 	"Sequence creator": {
 		"prefix": "seq",
@@ -144,7 +165,7 @@
 		"body": [
 			"serial(${1:sequenceable})"
 		],
-		"description": "serialise any parallelisation of notes in a musical object"
+		"description": "serialise any parallelisation of notes in one or more musical objects"
 	},
 	"Undo dynamic modifier": {
 		"prefix": "und",
