@@ -6,7 +6,7 @@
             "patterns": [{ "include": "#letter" }, { "include": "#paren-expression" }]
         },
         "letter": {
-            "match": "channel|bpm|echo|play|undynamic|interval|joinmap|widechord|go|record|velocity|octave|flatten|chord|note|scale|pitch|repeat|loop|serial|begin|end|biab|sequencemap|reverse|join|sequence|parallel",
+            "match": "flatten|reverse|velocity|biab|echo|sequence|interval|sequencemap|joinmap|chord|pitch|loop|octavemap|octave|undynamic|record|channel|go|join|scale|play|serial|begin|repeat|bpm|note|parallel|end",
             "name": "keyword.letter"
         },
         "paren-expression": {

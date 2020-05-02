@@ -20,13 +20,6 @@
 		],
 		"description": "create a Chord"
 	},
-	"Chord widener": {
-		"prefix": "wid",
-		"body": [
-			"widechord('${1:chord}')"
-		],
-		"description": "make a Chord wider"
-	},
 	"Flatten modifier": {
 		"prefix": "flat",
 		"body": [
@@ -89,6 +82,13 @@
 			"note('${1:letter}')"
 		],
 		"description": "create a Note from the note notation"
+	},
+	"Octave Mapper modifier": {
+		"prefix": "octavem",
+		"body": [
+			"octavemap('${1:int2int}',${2:object})"
+		],
+		"description": "create a sequence with notes for which order and the octaves are changed"
 	},
 	"Octave modifier": {
 		"prefix": "oct",
