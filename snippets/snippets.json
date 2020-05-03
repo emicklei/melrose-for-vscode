@@ -1,4 +1,11 @@
 {
+	"Apply a Pipeline to an object": {
+		"prefix": "apply",
+		"body": [
+			"apply(${1:pipeline},${2:object})"
+		],
+		"description": ""
+	},
 	"Beats Per Minute": {
 		"prefix": "bpm",
 		"body": [
@@ -103,6 +110,13 @@
 			"parallel(${1:sequenceable})"
 		],
 		"description": "create a new sequence in which all notes of a musical object are synched in time"
+	},
+	"Pipeline of functions": {
+		"prefix": "pip",
+		"body": [
+			"pipeline(${1:func1},${2:func2})"
+		],
+		"description": ""
 	},
 	"Pitch modifier": {
 		"prefix": "pit",
