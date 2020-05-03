@@ -57,6 +57,11 @@ export function activate(context: vscode.ExtensionContext) {
 		evalWithAction('begin');
 	});
 	context.subscriptions.push(disposable4);
+
+	let disposable5 = vscode.commands.registerCommand('melrose-for-vscode.kill', () => {
+		evalWithAction('kill');
+	});
+	context.subscriptions.push(disposable5);
 }
 
 // this method is called when your extension is deactivated

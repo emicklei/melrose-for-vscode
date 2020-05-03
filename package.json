@@ -15,7 +15,8 @@
         "onCommand:melrose-for-vscode.eval",
         "onCommand:melrose-for-vscode.evalAndPlay",
         "onCommand:melrose-for-vscode.evalAndBegin",
-        "onCommand:melrose-for-vscode.evalAndEnd"
+        "onCommand:melrose-for-vscode.evalAndEnd",
+        "onCommand:melrose-for-vscode.kill"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -74,6 +75,9 @@
         }, {
             "command": "melrose-for-vscode.evalAndBegin",
             "title": "Melrose Loop Begin"
+        }, {
+            "command": "melrose-for-vscode.evalAndBegin",
+            "title": "Melrose Play Kill"
         }],
         "keybindings": [{
             "command": "melrose-for-vscode.eval",
@@ -91,6 +95,10 @@
             "command": "melrose-for-vscode.evalAndEnd",
             "key": "ctrl+5",
             "mac": "cmd+5"
+        }, {
+            "command": "melrose-for-vscode.kill",
+            "key": "ctrl+d",
+            "mac": "cmd+d"
         }]
     },
     "scripts": {

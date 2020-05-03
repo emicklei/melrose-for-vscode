@@ -1,11 +1,4 @@
 {
-	"Apply a Pipeline to an object": {
-		"prefix": "apply",
-		"body": [
-			"apply(${1:pipeline},${2:object})"
-		],
-		"description": ""
-	},
 	"Beats Per Minute": {
 		"prefix": "bpm",
 		"body": [
@@ -26,6 +19,13 @@
 			"chord('${1:note}')"
 		],
 		"description": "create a Chord"
+	},
+	"Feed the Pipeline with an object": {
+		"prefix": "feed",
+		"body": [
+			"feed(${1:pipeline},${2:object})"
+		],
+		"description": ""
 	},
 	"Flatten modifier": {
 		"prefix": "flat",
@@ -194,6 +194,13 @@
 			"velocity(${1:velocity})"
 		],
 		"description": "set the base velocity [1..127]; default is 70"
+	},
+	"create a Chord progression": {
+		"prefix": "pro",
+		"body": [
+			"progression('${1:chords}')"
+		],
+		"description": ""
 	},
 	"the notes being played": {
 		"prefix": "ech",
