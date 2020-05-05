@@ -13,19 +13,19 @@
 		],
 		"description": "set the Beats in a Bar [1..6]; default is 4"
 	},
+	"Call all the functions of a Pipeline with an object": {
+		"prefix": "call",
+		"body": [
+			"call(${1:pipeline},${2:object})"
+		],
+		"description": ""
+	},
 	"Chord creator": {
 		"prefix": "cho",
 		"body": [
 			"chord('${1:note}')"
 		],
 		"description": "create a Chord"
-	},
-	"Feed the Pipeline with an object": {
-		"prefix": "feed",
-		"body": [
-			"feed(${1:pipeline},${2:object})"
-		],
-		"description": ""
 	},
 	"Flatten modifier": {
 		"prefix": "flat",
@@ -89,6 +89,13 @@
 			"note('${1:letter}')"
 		],
 		"description": "create a Note from the note notation"
+	},
+	"Note duration modifier": {
+		"prefix": "dur",
+		"body": [
+			"duration(${1:object},${2:object})"
+		],
+		"description": ""
 	},
 	"Octave Mapper modifier": {
 		"prefix": "octavem",
