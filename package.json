@@ -97,8 +97,8 @@
             "mac": "cmd+5"
         }, {
             "command": "melrose-for-vscode.kill",
-            "key": "ctrl+d",
-            "mac": "cmd+d"
+            "key": "ctrl+k",
+            "mac": "cmd+k"
         }]
     },
     "scripts": {

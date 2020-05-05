@@ -95,7 +95,7 @@
 		"body": [
 			"duration(${1:object},${2:object})"
 		],
-		"description": ""
+		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note.\nIf the parameter is greater than 0 then the note duration is set to a fixed value, e.g. 4=quarter,1=whole.\nIf the parameter is less than 1 then the note duration is scaled with a value, e.g. 0.5 will make a quarter ¼ into an eight ⅛.\n"
 	},
 	"Octave Mapper modifier": {
 		"prefix": "octavem",
@@ -194,13 +194,6 @@
 			"undynamic(${1:sequenceable})"
 		],
 		"description": "undynamic all the notes in a musical object"
-	},
-	"controls softness": {
-		"prefix": "vel",
-		"body": [
-			"velocity(${1:velocity})"
-		],
-		"description": "set the base velocity [1..127]; default is 70"
 	},
 	"create a Chord progression": {
 		"prefix": "pro",
