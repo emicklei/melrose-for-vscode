@@ -34,6 +34,13 @@
 		],
 		"description": "flatten all operations on a musical object to a new sequence"
 	},
+	"Index based getter": {
+		"prefix": "at",
+		"body": [
+			"at(${1:index},${2:object})"
+		],
+		"description": "create an index based getter to select a musical object"
+	},
 	"Integer Interval creator. Repeats on default": {
 		"prefix": "int",
 		"body": [
@@ -146,6 +153,13 @@
 		],
 		"description": "play musical objects such as Note,Chord,Sequence,..."
 	},
+	"Random generator": {
+		"prefix": "at",
+		"body": [
+			"random(${1:from},${2:to})"
+		],
+		"description": "create a random number generator"
+	},
 	"Recorder": {
 		"prefix": "rec",
 		"body": [
@@ -170,7 +184,7 @@
 	"Scale creator": {
 		"prefix": "sc",
 		"body": [
-			"scale('${1:letter}')"
+			"scale(${1:octaves},'${2:note}')"
 		],
 		"description": "create a Scale using a starting Note and type indicator (Major,minor)"
 	},
