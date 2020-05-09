@@ -84,11 +84,11 @@
 		"description": "select a MIDI channel, must be in [0..16]"
 	},
 	"Note creator": {
-		"prefix": "no",
+		"prefix": "mid",
 		"body": [
-			"note('${1:letter}')"
+			"midi(${1:number},${2:number})"
 		],
-		"description": "create a Note from the note notation"
+		"description": "create a Note"
 	},
 	"Note duration modifier": {
 		"prefix": "dur",
@@ -186,7 +186,7 @@
 		"body": [
 			"serial(${1:sequenceable})"
 		],
-		"description": "serialise any parallelisation of notes in one or more musical objects"
+		"description": "serialise any grouping of notes in one or more musical objects"
 	},
 	"Undo dynamic modifier": {
 		"prefix": "und",
