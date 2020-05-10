@@ -94,6 +94,7 @@ function evalWithAction(action: string) {
 		return;
 	}
 	var success = true;
+	var successResponseData: any = null;
 	axios({
 		method: 'post',
 		url: 'http://localhost:8118/v1/statements?trace=false&action=' + action,
@@ -101,7 +102,7 @@ function evalWithAction(action: string) {
 		headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
 	}).then((response: AxiosResponse<any>) => {
 		if (response.data !== null) {
-			console.log(response.data);
+			successResponseData = response.data;
 		}
 	}).catch((err: AxiosError<any>) => {
 		success = false;
@@ -113,12 +114,22 @@ function evalWithAction(action: string) {
 			console.error(err);
 		}
 	}).finally(() => {
+		let isLoop = false;
+		if (successResponseData !== null) {
+			isLoop = successResponseData.type === '*melrose.Loop'; // TODO have better response
+		}
 		let activeEditor = vscode.window.activeTextEditor;
 		if (!activeEditor) {
 			// not in editor
 			return;
 		}
 		if (success) {
+			if (action === 'begin' || isLoop) {
+				addBreakpointOnSelectionLine();
+			}
+			if (action === 'end') {
+				removeBreakpointOnSelectionLine();
+			}
 			if (action === 'play' || action === 'begin') {
 				activeEditor.setDecorations(playDecorationType, rangeExecuted);
 			} else {
@@ -139,4 +150,35 @@ function evalWithAction(action: string) {
 			activeEditor.setDecorations(executeFailDecorationType, []);
 		}, 200);
 	});
+}
+
+function addBreakpointOnSelectionLine() {
+	let activeEditor = vscode.window.activeTextEditor;
+	if (!activeEditor) {
+		// not in editor
+		return;
+	}
+	let document = activeEditor.document;
+	let selections = activeEditor.selections;
+	const column = selections[0].end.character;
+	const bps: vscode.Breakpoint[] = [];
+	bps.push(new vscode.SourceBreakpoint(new vscode.Location(document.uri, new vscode.Position(selections[0].end.line, column))));
+	vscode.debug.addBreakpoints(bps);
+}
+
+function removeBreakpointOnSelectionLine() {
+	let activeEditor = vscode.window.activeTextEditor;
+	if (!activeEditor) {
+		// not in editor
+		return;
+	}
+	let selections = activeEditor.selections;
+	for (let each of vscode.debug.breakpoints) {
+		if ((each as vscode.SourceBreakpoint).location.range.start.line === selections[0].end.line) {
+			const bps: vscode.Breakpoint[] = [];
+			bps.push(each);
+			vscode.debug.removeBreakpoints(bps);
+			// could be more on the same line so do not break the loop
+		}
+	}
 }
