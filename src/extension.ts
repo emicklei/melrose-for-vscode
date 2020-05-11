@@ -160,9 +160,8 @@ function addBreakpointOnSelectionLine() {
 	}
 	let document = activeEditor.document;
 	let selections = activeEditor.selections;
-	const column = selections[0].end.character;
 	const bps: vscode.Breakpoint[] = [];
-	bps.push(new vscode.SourceBreakpoint(new vscode.Location(document.uri, new vscode.Position(selections[0].end.line, column))));
+	bps.push(new vscode.SourceBreakpoint(new vscode.Location(document.uri, new vscode.Position(selections[0].end.line, 0))));
 	vscode.debug.addBreakpoints(bps);
 }
 
