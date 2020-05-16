@@ -41,13 +41,6 @@
 		],
 		"description": "create an index based getter to select a musical object"
 	},
-	"Integer Interval creator. Repeats on default": {
-		"prefix": "int",
-		"body": [
-			"interval(${1:from},${2:to},${3:by})"
-		],
-		"description": "create an integer repeating interval (from,to,by)"
-	},
 	"Integer Sequence Map modifier": {
 		"prefix": "ind",
 		"body": [
@@ -152,13 +145,6 @@
 			"play(${1:sequenceable})"
 		],
 		"description": "play musical objects such as Note,Chord,Sequence,..."
-	},
-	"Random generator": {
-		"prefix": "at",
-		"body": [
-			"random(${1:from},${2:to})"
-		],
-		"description": "create a random number generator"
 	},
 	"Recorder": {
 		"prefix": "rec",

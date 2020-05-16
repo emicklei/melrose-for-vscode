@@ -115,8 +115,19 @@ function evalWithAction(action: string) {
 		}
 	}).finally(() => {
 		let isLoop = false;
+		// TODO put this in separate func
 		if (successResponseData !== null) {
-			isLoop = successResponseData.type === '*melrose.Loop'; // TODO have better response
+			isLoop = successResponseData.type === '*melrose.Loop'; // TODO have better response			
+			if (successResponseData.message !== undefined) {
+				console.log(successResponseData.message);
+				if (successResponseData.object !== undefined) {
+					if (Object.keys(successResponseData.object).length > 0) {
+						console.log(successResponseData.object);
+					}
+				} else {
+					console.log('nil');
+				}
+			}
 		}
 		let activeEditor = vscode.window.activeTextEditor;
 		if (!activeEditor) {
