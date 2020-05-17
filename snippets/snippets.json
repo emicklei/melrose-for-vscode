@@ -13,19 +13,12 @@
 		],
 		"description": "set the Beats in a Bar [1..6]; default is 4"
 	},
-	"Call all the functions of a Pipeline with an object": {
-		"prefix": "call",
-		"body": [
-			"call(${1:pipeline},${2:object})"
-		],
-		"description": ""
-	},
 	"Chord creator": {
 		"prefix": "cho",
 		"body": [
 			"chord('${1:note}')"
 		],
-		"description": "create a Chord"
+		"description": "create a Chord from its string \u003ca href=\"/index.html#chord-not\"\u003enotation\u003c/a\u003e"
 	},
 	"Flatten modifier": {
 		"prefix": "flat",
@@ -34,12 +27,12 @@
 		],
 		"description": "flatten all operations on a musical object to a new sequence"
 	},
-	"Index based getter": {
+	"Index getter": {
 		"prefix": "at",
 		"body": [
 			"at(${1:index},${2:object})"
 		],
-		"description": "create an index based getter to select a musical object"
+		"description": "create an index getter (1-based) to select a musical object"
 	},
 	"Integer Sequence Map modifier": {
 		"prefix": "ind",
@@ -48,12 +41,12 @@
 		],
 		"description": "create a Mapper of sequence notes by index (1-based)"
 	},
-	"Join mapper": {
-		"prefix": "joinm",
+	"Integer interval creator": {
+		"prefix": "int",
 		"body": [
-			"joinmain('${1:indices}',${2:join})"
+			"interval(${1:from},${2:to},${3:by})"
 		],
-		"description": ""
+		"description": "create an integer repeating interval (from,to,by,method). Default method is 'repeat', Use next() to get a new integer"
 	},
 	"Join modifier": {
 		"prefix": "joi",
@@ -84,18 +77,18 @@
 		"description": "select a MIDI channel, must be in [0..16]"
 	},
 	"Note creator": {
-		"prefix": "mid",
+		"prefix": "no",
 		"body": [
-			"midi(${1:number},${2:number})"
+			"note('${1:letter}')"
 		],
-		"description": "create a Note"
+		"description": "create a Note  from its string \u003ca href=\"/index.html#note-not\"\u003enotation\u003c/a\u003e"
 	},
 	"Note duration modifier": {
 		"prefix": "dur",
 		"body": [
 			"duration(${1:object},${2:object})"
 		],
-		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note.\nIf the parameter is greater than 0 then the note duration is set to a fixed value, e.g. 4=quarter,1=whole.\nIf the parameter is less than 1 then the note duration is scaled with a value, e.g. 0.5 will make a quarter ¼ into an eight ⅛.\n"
+		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note.\nIf the parameter is greater than 0 then the note duration is set to a fixed value, e.g. 4=quarter,1=whole.\nIf the parameter is less than 1 then the note duration is scaled with a value, e.g. 0.5 will make a quarter ¼ into an eight ⅛\n"
 	},
 	"Octave Mapper modifier": {
 		"prefix": "octavem",
@@ -117,13 +110,6 @@
 			"parallel(${1:sequenceable})"
 		],
 		"description": "create a new sequence in which all notes of a musical object are synched in time"
-	},
-	"Pipeline of functions": {
-		"prefix": "pip",
-		"body": [
-			"pipeline(${1:func1},${2:func2})"
-		],
-		"description": ""
 	},
 	"Pitch modifier": {
 		"prefix": "pit",

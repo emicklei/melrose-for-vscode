@@ -27,7 +27,8 @@ const playDecorationType = vscode.window.createTextEditorDecorationType({
 		backgroundColor: { id: 'melrose.playBackground' }
 	}
 });
-
+// https://code.visualstudio.com/api/references/vscode-api#window.createOutputChannel
+const melroseOutput = vscode.window.createOutputChannel("Melrōse");
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -119,13 +120,13 @@ function evalWithAction(action: string) {
 		if (successResponseData !== null) {
 			isLoop = successResponseData.type === '*melrose.Loop'; // TODO have better response			
 			if (successResponseData.message !== undefined) {
-				console.log(successResponseData.message);
+				melroseOutput.appendLine(successResponseData.message);
 				if (successResponseData.object !== undefined) {
 					if (Object.keys(successResponseData.object).length > 0) {
 						console.log(successResponseData.object);
 					}
 				} else {
-					console.log('nil');
+					melroseOutput.appendLine('nil');
 				}
 			}
 		}
