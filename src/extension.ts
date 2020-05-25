@@ -79,6 +79,7 @@ function evalWithAction(action: string) {
 	let text = '';
 	let rangeExecuted: vscode.DecorationOptions[] = [];
 	let selection = activeEditor.selection;
+	let line = selection.active.line;
 	if (selection.isEmpty) {
 		// no selection, take current line content
 		text = activeEditor.document.lineAt(selection.active.line).text;
@@ -98,7 +99,7 @@ function evalWithAction(action: string) {
 	var successResponseData: any = null;
 	axios({
 		method: 'post',
-		url: 'http://localhost:8118/v1/statements?trace=false&action=' + action,
+		url: 'http://localhost:8118/v1/statements?trace=false&line=' + (line + 1) + '&action=' + action, // line is zero-based
 		data: text,
 		headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
 	}).then((response: AxiosResponse<any>) => {
@@ -108,7 +109,7 @@ function evalWithAction(action: string) {
 	}).catch((err: AxiosError<any>) => {
 		success = false;
 		if (err.response !== undefined) {
-			console.error(err.response.data.message);
+			melroseOutput.appendLine(err.response.data.message);
 			console.error(err.response.data);
 		} else {
 			vscode.window.showInformationMessage("No response from Melrose; did you start it?");
@@ -120,13 +121,11 @@ function evalWithAction(action: string) {
 		if (successResponseData !== null) {
 			isLoop = successResponseData.type === '*melrose.Loop'; // TODO have better response			
 			if (successResponseData.message !== undefined) {
-				melroseOutput.appendLine(successResponseData.message);
-				if (successResponseData.object !== undefined) {
+				// debug info				
+				if (successResponseData.object !== undefined && successResponseData.object !== null) {
 					if (Object.keys(successResponseData.object).length > 0) {
 						console.log(successResponseData.object);
 					}
-				} else {
-					melroseOutput.appendLine('nil');
 				}
 			}
 		}
@@ -137,14 +136,26 @@ function evalWithAction(action: string) {
 		}
 		if (success) {
 			if (action === 'begin' || isLoop) {
+				if (successResponseData.message !== undefined) {
+					melroseOutput.appendLine('begins: ' + successResponseData.message);
+				}
 				addBreakpointOnSelectionLine();
 			}
 			if (action === 'end') {
+				if (successResponseData.message !== undefined) {
+					melroseOutput.appendLine('  ends: ' + successResponseData.message);
+				}
 				removeBreakpointOnSelectionLine();
 			}
 			if (action === 'play' || action === 'begin') {
+				if (successResponseData.message !== undefined) {
+					melroseOutput.appendLine(' plays: ' + successResponseData.message);
+				}
 				activeEditor.setDecorations(playDecorationType, rangeExecuted);
 			} else {
+				if (successResponseData.message !== undefined) {
+					melroseOutput.appendLine(successResponseData.message);
+				}
 				activeEditor.setDecorations(executeOkDecorationType, rangeExecuted);
 			}
 		} else {
