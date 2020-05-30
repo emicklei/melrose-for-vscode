@@ -77,11 +77,11 @@
 		"description": "select a MIDI channel, must be in [0..16]"
 	},
 	"Note creator": {
-		"prefix": "mid",
+		"prefix": "no",
 		"body": [
-			"midi(${1:number},${2:number})"
+			"note('${1:letter}')"
 		],
-		"description": "create a Note"
+		"description": "create a Note  from its string \u003ca href=\"/index.html#note-not\"\u003enotation\u003c/a\u003e"
 	},
 	"Note duration modifier": {
 		"prefix": "dur",
