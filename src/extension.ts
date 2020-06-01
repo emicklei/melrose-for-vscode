@@ -27,8 +27,6 @@ const playDecorationType = vscode.window.createTextEditorDecorationType({
 		backgroundColor: { id: 'melrose.playBackground' }
 	}
 });
-// https://code.visualstudio.com/api/references/vscode-api#window.createOutputChannel
-const melroseOutput = vscode.window.createOutputChannel("Melrōse");
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -99,7 +97,7 @@ function evalWithAction(action: string) {
 	var successResponseData: any = null;
 	axios({
 		method: 'post',
-		url: 'http://localhost:8118/v1/statements?trace=true&line=' + (line + 1) + '&action=' + action, // line is zero-based
+		url: 'http://localhost:8118/v1/statements?trace=false&line=' + (line + 1) + '&action=' + action, // line is zero-based
 		data: text,
 		headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
 	}).then((response: AxiosResponse<any>) => {
@@ -109,7 +107,6 @@ function evalWithAction(action: string) {
 	}).catch((err: AxiosError<any>) => {
 		success = false;
 		if (err.response !== undefined) {
-			melroseOutput.appendLine(err.response.data.message);
 			console.error(err.response.data);
 		} else {
 			vscode.window.showInformationMessage("No response from Melrōse; did you start it?");
@@ -136,26 +133,14 @@ function evalWithAction(action: string) {
 		}
 		if (success) {
 			if (action === 'begin' || isLoop) {
-				if (successResponseData.message !== undefined) {
-					outputlog('begins: ' + successResponseData.message);
-				}
 				addBreakpointOnSelectionLine();
 			}
 			if (action === 'end') {
-				if (successResponseData.message !== undefined) {
-					outputlog('  ends: ' + successResponseData.message);
-				}
 				removeBreakpointOnSelectionLine();
 			}
 			if (action === 'play' || action === 'begin') {
-				if (successResponseData.message !== undefined) {
-					outputlog(' plays: ' + successResponseData.message);
-				}
 				activeEditor.setDecorations(playDecorationType, rangeExecuted);
 			} else {
-				if (successResponseData.message !== undefined) {
-					outputlog(successResponseData.message);
-				}
 				activeEditor.setDecorations(executeOkDecorationType, rangeExecuted);
 			}
 		} else {
@@ -173,12 +158,6 @@ function evalWithAction(action: string) {
 			activeEditor.setDecorations(executeFailDecorationType, []);
 		}, 200);
 	});
-}
-
-function outputlog(msg: string) {
-	if (msg !== null && msg.length > 0) {
-		melroseOutput.appendLine(msg);
-	}
 }
 
 function addBreakpointOnSelectionLine() {
