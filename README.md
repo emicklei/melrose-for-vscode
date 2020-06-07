@@ -10,7 +10,7 @@ A statement is evaluated by using the shortcut `cmd+E` and takes the content of 
 - direct evaluation of `melrōse` expressions using `cmd+E`
 - direct play of `melrose` expressions using `cmd+3`
 - loop begin `cmd+4` and loop end `cmd+5`
-- stop playing `cmd+k`
+- stop looping and playing `cmd+k`
 - syntax highlighting
 - visual feedback of the success of evaluation
     - flash green means OK

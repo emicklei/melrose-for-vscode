@@ -160,6 +160,13 @@
 		],
 		"description": "create a Scale using a starting Note and type indicator (Major,minor)"
 	},
+	"Schedule to play a musical object on a bar (starts with 1)": {
+		"prefix": "onb",
+		"body": [
+			"onbar('${1:bar},${2:object}')"
+		],
+		"description": ""
+	},
 	"Sequence creator": {
 		"prefix": "seq",
 		"body": [

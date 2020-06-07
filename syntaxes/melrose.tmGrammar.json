@@ -26,7 +26,7 @@
             ]
         },
         "letter": {
-            "match": "joinmap|sequence|biab|random|loop|progression|beats|midi|octavemap|replace|repeat|at|serial|notemerge|channel|interval|pitch|join|go|flatten|begin|end|next|reverse|bpm|record|parallel|play|sequencemap|echo|note|octave|undynamic|scale|notemap|duration|bars|plan|chord",
+            "match": "biab|sequence|progression|onbar|at|play|repeat|bpm|flatten|end|next|joinmap|record|scale|random|undynamic|parallel|channel|interval|octavemap|join|replace|sequencemap|notemap|notemerge|duration|loop|pitch|octave|beats|midi|note|go|bars|reverse|serial|begin|chord|echo",
             "name": "keyword.letter"
         },
         "paren-expression": {
