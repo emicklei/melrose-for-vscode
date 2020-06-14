@@ -9,9 +9,6 @@ import {
 } from 'axios';
 const axios = require('axios');
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-
 const executeOkDecorationType = vscode.window.createTextEditorDecorationType({
 	dark: {
 		backgroundColor: { id: 'melrose.executedBackground' }
@@ -28,6 +25,8 @@ const playDecorationType = vscode.window.createTextEditorDecorationType({
 	}
 });
 
+// this method is called when your extension is activated
+// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
@@ -38,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('melrose-for-vscode.eval', () => {
-		evalWithAction('');
+		evalWithAction('eval');
 	});
 	context.subscriptions.push(disposable);
 
@@ -61,6 +60,30 @@ export function activate(context: vscode.ExtensionContext) {
 		evalWithAction('kill');
 	});
 	context.subscriptions.push(disposable5);
+
+	let disposable6 = vscode.commands.registerCommand('melrose-for-vscode.evalAndInspect', () => {
+		evalWithAction('inspect');
+	});
+	context.subscriptions.push(disposable6);
+
+
+	// "capabilities": { "hoverProvider": "true" },
+
+	// let disposable7 = vscode.languages.registerHoverProvider(
+	// 	'melrose',
+	// 	new class implements vscode.HoverProvider {
+	// 		provideHover(
+	// 			document: vscode.TextDocument,
+	// 			_position: vscode.Position,
+	// 			_token: vscode.CancellationToken
+	// 		): vscode.ProviderResult<vscode.Hover> {
+	// 			const contents = new vscode.MarkdownString(`melrose inspection`);
+	// 			contents.isTrusted = true;
+	// 			return new vscode.Hover(contents);
+	// 		}
+	// 	}()
+	// );
+	//context.subscriptions.push(disposable7);
 }
 
 // this method is called when your extension is deactivated
@@ -132,15 +155,28 @@ function evalWithAction(action: string) {
 			return;
 		}
 		if (success) {
+			if (action === 'inspect') {
+				console.log(successResponseData);
+				if (successResponseData.object !== undefined && successResponseData.object !== null) {
+					if (Object.keys(successResponseData.object).length > 0) {
+						console.log(successResponseData.object);
+					}
+				}
+
+			}
 			if (action === 'begin' || isLoop) {
 				addBreakpointOnSelectionLine();
 			}
 			if (action === 'end') {
 				removeBreakpointOnSelectionLine();
 			}
+			if (action === 'kill') {
+				removeAllBreakpoints();
+			}
 			if (action === 'play' || action === 'begin') {
 				activeEditor.setDecorations(playDecorationType, rangeExecuted);
-			} else {
+			}
+			if (action === 'eval') {
 				activeEditor.setDecorations(executeOkDecorationType, rangeExecuted);
 			}
 		} else {
@@ -187,5 +223,18 @@ function removeBreakpointOnSelectionLine() {
 			vscode.debug.removeBreakpoints(bps);
 			// could be more on the same line so do not break the loop
 		}
+	}
+}
+
+function removeAllBreakpoints() {
+	let activeEditor = vscode.window.activeTextEditor;
+	if (!activeEditor) {
+		// not in editor
+		return;
+	}
+	for (let each of vscode.debug.breakpoints) {
+		const bps: vscode.Breakpoint[] = [];
+		bps.push(each);
+		vscode.debug.removeBreakpoints(bps);
 	}
 }

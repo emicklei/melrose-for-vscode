@@ -16,7 +16,8 @@
         "onCommand:melrose-for-vscode.evalAndPlay",
         "onCommand:melrose-for-vscode.evalAndBegin",
         "onCommand:melrose-for-vscode.evalAndEnd",
-        "onCommand:melrose-for-vscode.kill"
+        "onCommand:melrose-for-vscode.kill",
+        "onCommand:melrose-for-vscode.evalAndInspect"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -78,6 +79,9 @@
         }, {
             "command": "melrose-for-vscode.evalAndBegin",
             "title": "Melrose Play Kill"
+        }, {
+            "command": "melrose-for-vscode.evalAndInspect",
+            "title": "Melrose Inspect"
         }],
         "keybindings": [{
             "command": "melrose-for-vscode.eval",
@@ -99,6 +103,10 @@
             "command": "melrose-for-vscode.kill",
             "key": "ctrl+k",
             "mac": "cmd+k"
+        }, {
+            "command": "melrose-for-vscode.evalAndInspect",
+            "key": "ctrl+2",
+            "mac": "cmd+2"
         }]
     },
     "scripts": {
