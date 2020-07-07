@@ -2,14 +2,20 @@
     "name": "melrose-for-vscode",
     "displayName": "Melrōse music coding",
     "description": "Interactive music coding with Melrōse",
+    "icon": "images/icon.png",
     "version": "1.0.0",
-    "publisher": "E.Micklei",
-    "repository": "https://github.com/emicklei/melrose-for-vscode",
+    "publisher": "EMicklei",
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "homepage": "https://github.com/emicklei/melrose-for-vscode/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/emicklei/melrose-for-vscode.git"
+    },
     "engines": {
         "vscode": "^1.44.0"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages", "Other"
     ],
     "activationEvents": [
         "onCommand:melrose-for-vscode.eval",

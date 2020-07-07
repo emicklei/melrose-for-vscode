@@ -25,6 +25,8 @@ const playDecorationType = vscode.window.createTextEditorDecorationType({
 	}
 });
 
+// const evalOutput = vscode.window.createOutputChannel("Melrōse");
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -83,7 +85,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// 		}
 	// 	}()
 	// );
-	//context.subscriptions.push(disposable7);
+	// context.subscriptions.push(disposable7);
 }
 
 // this method is called when your extension is deactivated
@@ -139,7 +141,7 @@ function evalWithAction(action: string) {
 		let isLoop = false;
 		// TODO put this in separate func
 		if (successResponseData !== null) {
-			isLoop = successResponseData.type === '*melrose.Loop'; // TODO have better response			
+			isLoop = successResponseData.type === '*core.Loop'; // TODO have better response			
 			if (successResponseData.message !== undefined) {
 				// debug info				
 				if (successResponseData.object !== undefined && successResponseData.object !== null) {

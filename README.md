@@ -1,8 +1,8 @@
-# melrose-for-vscode README
+# melrose-for-vscode
 
 This plugin is used to edit musical expressions for the [melrōse](http://github.com/emicklei/melrose) music programming tool.
-Musical statements can be created with `.mel` or `.melrose` fiels.
-Each statements can be evaluated directly with the connected `melrōse` tool, which needs to be started separately.
+Musical statements can be created with `.mel` or `.melrose` files.
+Each statements can be evaluated directly with the connected `melrōse` tool, which needs to be started separately, typically in a Terminal Window.
 A statement is evaluated by using the shortcut `cmd+E` and takes the content of the active line (where the cursor is), or the content of the selected text in the editor.
 
 ## Features
@@ -11,7 +11,7 @@ A statement is evaluated by using the shortcut `cmd+E` and takes the content of 
 - direct play of `melrose` expressions using `cmd+3`
 - loop begin `cmd+4` and loop end `cmd+5`
 - stop looping and playing `cmd+k`
-- inpsect musial object `cmd+2`
+- inspect musial object `cmd+2`
 - syntax highlighting
 - visual feedback of the success of evaluation
     - flash green means OK
@@ -20,7 +20,7 @@ A statement is evaluated by using the shortcut `cmd+E` and takes the content of 
 
 ## Requirements
 
-This plugin requires the `melrōse` tool which needs to be [installed](https://emicklei.github.io/melrose/) and run separately.
+This plugin requires the `melrōse` tool which needs to be [installed](https://emicklei.github.io/melrose/) and run separately in a Terminal Window.
 
 ## Known Issues
 
@@ -28,6 +28,8 @@ This plugin requires the `melrōse` tool which needs to be [installed](https://e
 
 ## Release Notes
 
-### 1.0.0
+See (CHANGELOG](https://github.com/emicklei/melrose-for-vscode/blob/master/CHANGELOG.md)
 
-Initial release.
+
+Software is licensed under [Apache 2.0 license](LICENSE).
+(c) 2019-2020 [ernestmicklei.com](http://ernestmicklei.com)

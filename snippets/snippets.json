@@ -13,14 +13,28 @@
 		],
 		"description": "set the Beats in a Bar [1..6]; default is 4"
 	},
+	"Begin loop command": {
+		"prefix": "beg",
+		"body": [
+			"begin(${1:loop})"
+		],
+		"description": "begin loop(s). Ignore if it was running."
+	},
 	"Chord creator": {
 		"prefix": "cho",
 		"body": [
 			"chord('${1:note}')"
 		],
-		"description": "create a Chord from its string \u003ca href=\"/melrose/index.html#chord-not\"\u003enotation\u003c/a\u003e"
+		"description": "create a Chord from its string \u003ca href=\"/melrose/melrose/notations.html#chord-not\"\u003enotation\u003c/a\u003e"
 	},
-	"Flatten modifier": {
+	"Duration operator": {
+		"prefix": "dur",
+		"body": [
+			"duration(${1:object},${2:object})"
+		],
+		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note.\nIf the parameter is greater than 0 then the note duration is set to a fixed value, e.g. 4=quarter,1=whole.\nIf the parameter is less than 1 then the note duration is scaled with a value, e.g. 0.5 will make a quarter ¼ into an eight ⅛\n"
+	},
+	"Flatten operator": {
 		"prefix": "flat",
 		"body": [
 			"flatten(${1:sequenceable})"
@@ -34,119 +48,133 @@
 		],
 		"description": "create an index getter (1-based) to select a musical object"
 	},
-	"Integer Sequence Map modifier": {
-		"prefix": "ind",
-		"body": [
-			"sequencemap('${1:space-separated-1-based-indices}',${2:sequenceable})"
-		],
-		"description": "create a Mapper of sequence notes by index (1-based)"
-	},
-	"Integer interval creator": {
+	"Interval creator": {
 		"prefix": "int",
 		"body": [
 			"interval(${1:from},${2:to},${3:by})"
 		],
 		"description": "create an integer repeating interval (from,to,by,method). Default method is 'repeat', Use next() to get a new integer"
 	},
-	"Join modifier": {
+	"Join Map creator": {
+		"prefix": "joinm",
+		"body": [
+			"joinmap('${1:indices}',${2:join})"
+		],
+		"description": ""
+	},
+	"Join operator": {
 		"prefix": "joi",
 		"body": [
 			"join(${1:first},${2:second})"
 		],
-		"description": "join two or more musical objects"
+		"description": "When played, each musical object is played in sequence"
 	},
-	"Loop creator ; must be assigned to a variable": {
+	"Join operator [J]": {
+		"prefix": "joi",
+		"body": [
+			"join(${1:first},${2:second})"
+		],
+		"description": "When played, each musical object is played in sequence"
+	},
+	"Loop creator": {
 		"prefix": "loo",
 		"body": [
 			"lp_${1:object} = loop(${1:object})"
 		],
-		"description": "create a new loop from one or more objects"
+		"description": "create a new loop from one or more objects; must be assigned to a variable"
 	},
-	"Loop runner": {
-		"prefix": "beg",
-		"body": [
-			"begin(${1:loop})"
-		],
-		"description": "begin loop(s). Ignore if it was running."
-	},
-	"MIDI channel modifier ; must be a top-level modifier": {
+	"MIDI channel operator": {
 		"prefix": "chan",
 		"body": [
 			"channel(${1:number},${2:sequenceable})"
 		],
-		"description": "select a MIDI channel, must be in [0..16]"
+		"description": "select a MIDI channel, must be in [1..16]; must be a top-level operator"
+	},
+	"Multi track creator": {
+		"prefix": "mtr",
+		"body": [
+			"multi()"
+		],
+		"description": ""
 	},
 	"Note creator": {
-		"prefix": "mid",
+		"prefix": "no",
 		"body": [
-			"midi(${1:number},${2:number})"
+			"note('${1:letter}')"
 		],
-		"description": "create a Note"
+		"description": "create a Note using this \u003ca href=\"/melrose/notations.html#note-not\"\u003eformat\u003c/a\u003e"
 	},
-	"Note duration modifier": {
-		"prefix": "dur",
-		"body": [
-			"duration(${1:object},${2:object})"
-		],
-		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note.\nIf the parameter is greater than 0 then the note duration is set to a fixed value, e.g. 4=quarter,1=whole.\nIf the parameter is less than 1 then the note duration is scaled with a value, e.g. 0.5 will make a quarter ¼ into an eight ⅛\n"
-	},
-	"Octave Mapper modifier": {
+	"Octave Map operator": {
 		"prefix": "octavem",
 		"body": [
 			"octavemap('${1:int2int}',${2:object})"
 		],
 		"description": "create a sequence with notes for which order and the octaves are changed"
 	},
-	"Octave modifier": {
+	"Octave operator": {
 		"prefix": "oct",
 		"body": [
 			"octave(${1:offet},${2:sequenceable})"
 		],
 		"description": "changes the pitch of notes by steps of 12 semitones"
 	},
-	"Parallel modifier": {
+	"Parallel operator": {
 		"prefix": "par",
 		"body": [
 			"parallel(${1:sequenceable})"
 		],
-		"description": "create a new sequence in which all notes of a musical object are synched in time"
+		"description": "create a new sequence in which all notes of a musical object are played simultaneously"
 	},
-	"Pitch modifier": {
+	"Pitch operator": {
 		"prefix": "pit",
 		"body": [
 			"pitch(${1:semitones},${2:sequenceable})"
 		],
 		"description": "change the pitch with a delta of semitones"
 	},
-	"Player (background)": {
+	"Play musical objects in the background": {
 		"prefix": "go",
 		"body": [
 			"go(${1:sequenceable})"
 		],
-		"description": "play all musical objects in parallel"
+		"description": "play all musical objects together in the background (do not wait for completion)"
 	},
-	"Player (foreground)": {
+	"Play musical objects in the foreground": {
 		"prefix": "pla",
 		"body": [
 			"play(${1:sequenceable})"
 		],
-		"description": "play musical objects such as Note,Chord,Sequence,..."
+		"description": "play all musical objects"
 	},
-	"Recorder": {
+	"Progress creator": {
+		"prefix": "pro",
+		"body": [
+			"progression('${1:chords}')"
+		],
+		"description": "create a Chord progression using this \u003ca href=\"/melrose/notations.html#progression-not\"\u003eformat\u003c/a\u003e"
+	},
+	"Random generator": {
+		"prefix": "ra",
+		"body": [
+			"random(${1:from},${2:to})"
+		],
+		"description": "create a random integer generator. Use next() to get a new integer"
+	},
+	"Recording creator": {
 		"prefix": "rec",
 		"body": [
-			"record(${1:input-device-id},${1:seconds-inactivity})"
+			"record(${1:input-device-id},${2:seconds-inactivity})"
 		],
 		"description": "creates a recorded sequence of notes from a MIDI device"
 	},
-	"Repeat modifier": {
+	"Repeat operator": {
 		"prefix": "rep",
 		"body": [
 			"repeat(${1:times},${2:sequenceable})"
 		],
 		"description": "repeat the musical object a number of times"
 	},
-	"Reverse modifier": {
+	"Reverse operator": {
 		"prefix": "rev",
 		"body": [
 			"reverse(${1:sequenceable})"
@@ -158,48 +186,48 @@
 		"body": [
 			"scale(${1:octaves},'${2:note}')"
 		],
-		"description": "create a Scale using a starting Note and type indicator (Major,minor)"
+		"description": "create a Scale using this \u003ca href=\"/melrose/notations.html#scale-not\"\u003eformat\u003c/a\u003e"
 	},
-	"Schedule to play a musical object on a bar (starts with 1)": {
-		"prefix": "onb",
+	"Sequence Map creator": {
+		"prefix": "ind",
 		"body": [
-			"onbar('${1:bar},${2:object}')"
+			"sequencemap('${1:space-separated-1-based-indices}',${2:sequenceable})"
 		],
-		"description": ""
+		"description": "create a Mapper of sequence notes by index (1-based)"
 	},
 	"Sequence creator": {
 		"prefix": "seq",
 		"body": [
 			"sequence('${1:space-separated-notes}')"
 		],
-		"description": "create a Sequence from (space separated) notes"
+		"description": "create a Sequence using this \u003ca href=\"/melrose/notations.html#sequence-not\"\u003eformat\u003c/a\u003e"
 	},
-	"Serial modifier": {
+	"Serial operator": {
 		"prefix": "ser",
 		"body": [
 			"serial(${1:sequenceable})"
 		],
 		"description": "serialise any grouping of notes in one or more musical objects"
 	},
-	"Undo dynamic modifier": {
+	"Track creator": {
+		"prefix": "tr",
+		"body": [
+			"track('${1:title},${2:channel}')"
+		],
+		"description": ""
+	},
+	"Undo dynamic operator": {
 		"prefix": "und",
 		"body": [
 			"undynamic(${1:sequenceable})"
 		],
 		"description": "undynamic all the notes in a musical object"
 	},
-	"create a Chord progression": {
-		"prefix": "pro",
-		"body": [
-			"progression('${1:chords}')"
-		],
-		"description": ""
-	},
 	"the notes being played": {
 		"prefix": "ech",
 		"body": [
 			"echo(${0:true|false})"
 		],
-		"description": "echo the notes being played; default is true"
+		"description": "echo the notes being played; default is false"
 	}
 }
