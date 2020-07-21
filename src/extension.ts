@@ -166,7 +166,7 @@ function evalWithAction(action: string) {
 				}
 
 			}
-			if (action === 'begin' || isLoop) {
+			if (action === 'begin') {
 				addBreakpointOnSelectionLine();
 			}
 			if (action === 'end') {
@@ -175,8 +175,11 @@ function evalWithAction(action: string) {
 			if (action === 'kill') {
 				removeAllBreakpoints();
 			}
-			if (action === 'play' || action === 'begin') {
+			if (action === 'play') {
 				activeEditor.setDecorations(playDecorationType, rangeExecuted);
+				if (isLoop) {
+					addBreakpointOnSelectionLine();
+				}
 			}
 			if (action === 'eval') {
 				activeEditor.setDecorations(executeOkDecorationType, rangeExecuted);

@@ -39,7 +39,7 @@
 		"body": [
 			"flatten(${1:sequenceable})"
 		],
-		"description": "flatten all operations on a musical object to a new sequence"
+		"description": "flatten (ungroup) all operations on a musical object to a new sequence"
 	},
 	"Index getter": {
 		"prefix": "at",
@@ -81,7 +81,7 @@
 		"body": [
 			"lp_${1:object} = loop(${1:object})"
 		],
-		"description": "create a new loop from one or more objects; must be assigned to a variable"
+		"description": "create a new loop from one or more musical objects; must be assigned to a variable"
 	},
 	"MIDI channel operator": {
 		"prefix": "chan",
@@ -98,11 +98,11 @@
 		"description": ""
 	},
 	"Note creator": {
-		"prefix": "no",
+		"prefix": "mid",
 		"body": [
-			"note('${1:letter}')"
+			"midi(${1:number},${2:number},${3:number})"
 		],
-		"description": "create a Note using this \u003ca href=\"/melrose/notations.html#note-not\"\u003eformat\u003c/a\u003e"
+		"description": "create a Note from MIDI information and is typically used for drum sets.\nThe first parameter is the duration and must be one of {0.0625,0.125,0.25,0.5,1,2,4,8,16}.\nA duration of 0.25 or 4 means create a quarter note.\nSecond parameter is the MIDI number and must be one of [0..127].\nThe third parameter is the velocity (~ loudness) and must be one of [0..127]"
 	},
 	"Octave Map operator": {
 		"prefix": "octavem",
@@ -114,16 +114,16 @@
 	"Octave operator": {
 		"prefix": "oct",
 		"body": [
-			"octave(${1:offet},${2:sequenceable})"
+			"octave(${1:offset},${2:sequenceable})"
 		],
-		"description": "changes the pitch of notes by steps of 12 semitones"
+		"description": "changes the pitch of notes by steps of 12 semitones for one or more musical objects"
 	},
 	"Parallel operator": {
 		"prefix": "par",
 		"body": [
 			"parallel(${1:sequenceable})"
 		],
-		"description": "create a new sequence in which all notes of a musical object are played simultaneously"
+		"description": "create a new sequence in which all notes of a musical object are grouped"
 	},
 	"Pitch operator": {
 		"prefix": "pit",
@@ -158,14 +158,14 @@
 		"body": [
 			"random(${1:from},${2:to})"
 		],
-		"description": "create a random integer generator. Use next() to get a new integer"
+		"description": "create a random integer generator. Use next() to generate a new integer"
 	},
 	"Recording creator": {
 		"prefix": "rec",
 		"body": [
-			"record(${1:input-device-id},${2:seconds-inactivity})"
+			"record()"
 		],
-		"description": "creates a recorded sequence of notes from a MIDI device"
+		"description": "creates a recorded sequence of notes from the current MIDI input device"
 	},
 	"Repeat operator": {
 		"prefix": "rep",
@@ -193,7 +193,7 @@
 		"body": [
 			"sequencemap('${1:space-separated-1-based-indices}',${2:sequenceable})"
 		],
-		"description": "create a Mapper of sequence notes by index (1-based)"
+		"description": "creates a mapper of sequence notes by index (1-based)"
 	},
 	"Sequence creator": {
 		"prefix": "seq",
@@ -207,7 +207,7 @@
 		"body": [
 			"serial(${1:sequenceable})"
 		],
-		"description": "serialise any grouping of notes in one or more musical objects"
+		"description": "serialise any grouping of notes from one or more musical objects"
 	},
 	"Track creator": {
 		"prefix": "tr",
@@ -216,18 +216,18 @@
 		],
 		"description": ""
 	},
+	"Track modifier": {
+		"prefix": "onbar",
+		"body": [
+			"onbar(${1:bar},${2:object})"
+		],
+		"description": "puts a musical object on a track to start at a specific bar"
+	},
 	"Undo dynamic operator": {
 		"prefix": "und",
 		"body": [
 			"undynamic(${1:sequenceable})"
 		],
-		"description": "undynamic all the notes in a musical object"
-	},
-	"the notes being played": {
-		"prefix": "ech",
-		"body": [
-			"echo(${0:true|false})"
-		],
-		"description": "echo the notes being played; default is false"
+		"description": "set the dymamic to normal for all notes in a musical object"
 	}
 }
