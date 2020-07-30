@@ -34,12 +34,12 @@
 		],
 		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note.\nIf the parameter is greater than 0 then the note duration is set to a fixed value, e.g. 4=quarter,1=whole.\nIf the parameter is less than 1 then the note duration is scaled with a value, e.g. 0.5 will make a quarter ¼ into an eight ⅛\n"
 	},
-	"Flatten operator": {
+	"Flat operator": {
 		"prefix": "flat",
 		"body": [
-			"flatten(${1:sequenceable})"
+			"flat(${1:sequenceable})"
 		],
-		"description": "flatten (ungroup) all operations on a musical object to a new sequence"
+		"description": "flat (ungroup) all operations on a musical object to a new sequence"
 	},
 	"Index getter": {
 		"prefix": "at",
@@ -54,6 +54,20 @@
 			"interval(${1:from},${2:to},${3:by})"
 		],
 		"description": "create an integer repeating interval (from,to,by,method). Default method is 'repeat', Use next() to get a new integer"
+	},
+	"Iterator creator": {
+		"prefix": "it",
+		"body": [
+			"iterator(${1:array-element})"
+		],
+		"description": "iterator that has an array of constant values and evaluates to one. Use next() to increase and rotate the value."
+	},
+	"Iterator creator [I]": {
+		"prefix": "it",
+		"body": [
+			"iterator(${1:array-element})"
+		],
+		"description": "iterator that has an array of constant values and evaluates to one. Use next() to increase and rotate the value."
 	},
 	"Join Map creator": {
 		"prefix": "joinm",
@@ -98,11 +112,11 @@
 		"description": ""
 	},
 	"Note creator": {
-		"prefix": "mid",
+		"prefix": "no",
 		"body": [
-			"midi(${1:number},${2:number},${3:number})"
+			"note('${1:letter}')"
 		],
-		"description": "create a Note from MIDI information and is typically used for drum sets.\nThe first parameter is the duration and must be one of {0.0625,0.125,0.25,0.5,1,2,4,8,16}.\nA duration of 0.25 or 4 means create a quarter note.\nSecond parameter is the MIDI number and must be one of [0..127].\nThe third parameter is the velocity (~ loudness) and must be one of [0..127]"
+		"description": "create a Note using this \u003ca href=\"/melrose/notations.html#note-not\"\u003eformat\u003c/a\u003e"
 	},
 	"Octave Map operator": {
 		"prefix": "octavem",
