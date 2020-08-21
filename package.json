@@ -18,6 +18,7 @@
         "Programming Languages", "Other"
     ],
     "activationEvents": [
+        "onLanguage:melrose",
         "onCommand:melrose-for-vscode.eval",
         "onCommand:melrose-for-vscode.evalAndPlay",
         "onCommand:melrose-for-vscode.evalAndBegin",
@@ -26,7 +27,7 @@
         "onCommand:melrose-for-vscode.evalAndInspect"
     ],
     "main": "./out/extension.js",
-    "contributes": {
+    "contributes": { 
         "languages": [{
             "id": "melrose",
             "extensions": [".mel", ".melrose"],

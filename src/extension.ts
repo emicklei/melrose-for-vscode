@@ -67,25 +67,30 @@ export function activate(context: vscode.ExtensionContext) {
 		evalWithAction('inspect');
 	});
 	context.subscriptions.push(disposable6);
-
-
-	// "capabilities": { "hoverProvider": "true" },
-
-	// let disposable7 = vscode.languages.registerHoverProvider(
-	// 	'melrose',
-	// 	new class implements vscode.HoverProvider {
-	// 		provideHover(
-	// 			document: vscode.TextDocument,
-	// 			_position: vscode.Position,
-	// 			_token: vscode.CancellationToken
-	// 		): vscode.ProviderResult<vscode.Hover> {
-	// 			const contents = new vscode.MarkdownString(`melrose inspection`);
-	// 			contents.isTrusted = true;
-	// 			return new vscode.Hover(contents);
-	// 		}
-	// 	}()
-	// );
-	// context.subscriptions.push(disposable7);
+	
+	let disposable8 = vscode.languages.registerHoverProvider(
+		{ scheme: 'file', language:'melrose' }, {
+		provideHover: async (doc: vscode.TextDocument, pos: vscode.Position): Promise<vscode.Hover> => {
+			let range = doc.getWordRangeAtPosition(pos);
+			let token = doc.getText(range);		
+			let response = await axios({
+					method: 'post',
+					url: 'http://localhost:8118/v1/inspect?trace=false',
+					data: {
+						token: token
+					},
+					headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
+				});			
+			if (!response || !response.data || !response.data.MarkdownString) {
+				return new vscode.Hover('');
+			}
+			return new vscode.Hover(<vscode.MarkdownString>{
+				value: response.data.MarkdownString,
+				isTrusted: true
+			}, range);
+		}
+	});
+	context.subscriptions.push(disposable8);
 }
 
 // this method is called when your extension is deactivated
