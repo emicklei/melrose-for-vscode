@@ -67,20 +67,20 @@ export function activate(context: vscode.ExtensionContext) {
 		evalWithAction('inspect');
 	});
 	context.subscriptions.push(disposable6);
-	
+
 	let disposable8 = vscode.languages.registerHoverProvider(
-		{ scheme: 'file', language:'melrose' }, {
+		{ scheme: 'file', language: 'melrose' }, {
 		provideHover: async (doc: vscode.TextDocument, pos: vscode.Position): Promise<vscode.Hover> => {
 			let range = doc.getWordRangeAtPosition(pos);
-			let token = doc.getText(range);		
+			let token = doc.getText(range);
 			let response = await axios({
-					method: 'post',
-					url: 'http://localhost:8118/v1/inspect?trace=false',
-					data: {
-						token: token
-					},
-					headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
-				});			
+				method: 'post',
+				url: 'http://localhost:8118/v1/inspect?trace=false',
+				data: {
+					token: token
+				},
+				headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
+			});
 			if (!response || !response.data || !response.data.MarkdownString) {
 				return new vscode.Hover('');
 			}
@@ -127,7 +127,7 @@ function evalWithAction(action: string) {
 	var successResponseData: any = null;
 	axios({
 		method: 'post',
-		url: 'http://localhost:8118/v1/statements?trace=false&line=' + (line + 1) + '&action=' + action, // line is zero-based
+		url: 'http://localhost:8118/v1/statements?trace=false&line=' + (line + 1) + '&action=' + action + '&file=' + activeEditor.document.fileName, // line is zero-based
 		data: text,
 		headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
 	}).then((response: AxiosResponse<any>) => {
@@ -137,6 +137,7 @@ function evalWithAction(action: string) {
 	}).catch((err: AxiosError<any>) => {
 		success = false;
 		if (err.response !== undefined) {
+			vscode.window.showWarningMessage(err.response.data.message);
 			console.error(err.response.data);
 		} else {
 			vscode.window.showInformationMessage("No response from Melrōse; did you start it?");

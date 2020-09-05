@@ -4,7 +4,7 @@
 		"body": [
 			"bpm(${1:beats-per-minute})"
 		],
-		"description": "set the Beats Per Minute [1..300]; default is 120"
+		"description": "set the Beats Per Minute (BPM) [1..300]; default is 120"
 	},
 	"Beats in a Bar": {
 		"prefix": "biab",
@@ -32,14 +32,7 @@
 		"body": [
 			"duration(${1:object},${2:object})"
 		],
-		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note.\nIf the parameter is greater than 0 then the note duration is set to a fixed value, e.g. 4=quarter,1=whole.\nIf the parameter is less than 1 then the note duration is scaled with a value, e.g. 0.5 will make a quarter ¼ into an eight ⅛\n"
-	},
-	"Flat operator": {
-		"prefix": "flat",
-		"body": [
-			"flat(${1:sequenceable})"
-		],
-		"description": "flat (ungroup) all operations on a musical object to a new sequence"
+		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note, e.g. 1=whole, 0.5 or 2 = half, 0.25 or 4 = quarter, 0.125 or 8 = eight, 0.0625 or 16 = sixteenth.\n"
 	},
 	"Index getter": {
 		"prefix": "at",
@@ -81,14 +74,14 @@
 		"body": [
 			"join(${1:first},${2:second})"
 		],
-		"description": "When played, each musical object is played in sequence"
+		"description": "joins two or more musical objects as one"
 	},
 	"Join operator [J]": {
 		"prefix": "joi",
 		"body": [
 			"join(${1:first},${2:second})"
 		],
-		"description": "When played, each musical object is played in sequence"
+		"description": "joins two or more musical objects as one"
 	},
 	"Loop creator": {
 		"prefix": "loo",
@@ -123,7 +116,7 @@
 		"body": [
 			"octavemap('${1:int2int}',${2:object})"
 		],
-		"description": "create a sequence with notes for which order and the octaves are changed"
+		"description": "create a sequence with notes for which the order and the octaves are changed"
 	},
 	"Octave operator": {
 		"prefix": "oct",
