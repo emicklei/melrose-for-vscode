@@ -75,7 +75,7 @@ export function activate(context: vscode.ExtensionContext) {
 			let token = doc.getText(range);
 			let response = await axios({
 				method: 'post',
-				url: 'http://localhost:8118/v1/inspect?trace=false',
+				url: 'http://localhost:8118/v1/inspect?debug=false',
 				data: {
 					token: token
 				},
@@ -127,7 +127,7 @@ function evalWithAction(action: string) {
 	var successResponseData: any = null;
 	axios({
 		method: 'post',
-		url: 'http://localhost:8118/v1/statements?trace=false&line=' + (line + 1) + '&action=' + action + '&file=' + activeEditor.document.fileName, // line is zero-based
+		url: 'http://localhost:8118/v1/statements?debug=false&line=' + (line + 1) + '&action=' + action + '&file=' + activeEditor.document.fileName, // line is zero-based
 		data: text,
 		headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
 	}).then((response: AxiosResponse<any>) => {

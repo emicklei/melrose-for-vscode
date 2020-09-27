@@ -25,14 +25,28 @@
 		"body": [
 			"chord('${1:note}')"
 		],
-		"description": "create a Chord from its string \u003ca href=\"/melrose/melrose/notations.html#chord-not\"\u003enotation\u003c/a\u003e"
+		"description": "create a Chord from its string \u003ca href=\"/melrose/notations.html#chord-not\"\u003enotation\u003c/a\u003e"
 	},
-	"Duration operator": {
-		"prefix": "dur",
+	"Duration fraction operator": {
+		"prefix": "fra",
 		"body": [
-			"duration(${1:object},${2:object})"
+			"fraction(${1:object},${2:object})"
 		],
-		"description": "Creates a new modified musical object for which the duration of all notes are changed.\nThe first parameter controls the length (duration) of the note, e.g. 1=whole, 0.5 or 2 = half, 0.25 or 4 = quarter, 0.125 or 8 = eight, 0.0625 or 16 = sixteenth.\n"
+		"description": "Creates a new object for which the fraction of duration of all notes are changed.\nThe first parameter controls the fraction of the note, e.g. 1=whole, 0.5 or 2 = half, 0.25 or 4 = quarter, 0.125 or 8 = eight, 0.0625 or 16 = sixteenth.\n"
+	},
+	"Dynamic operator": {
+		"prefix": "dy",
+		"body": [
+			"dynamic(${1:emphasis},${2:object})"
+		],
+		"description": "Creates a new modified musical object for which the dynamics of all notes are changed.\n\tThe first parameter controls the emphasis the note, e.g. + (mezzoforte,mf), -- (piano,p).\n\t"
+	},
+	"Group operator": {
+		"prefix": "par",
+		"body": [
+			"group(${1:sequenceable})"
+		],
+		"description": "create a new sequence in which all notes of a musical object are grouped"
 	},
 	"Index getter": {
 		"prefix": "at",
@@ -67,7 +81,7 @@
 		"body": [
 			"joinmap('${1:indices}',${2:join})"
 		],
-		"description": ""
+		"description": "creates a new join by mapping elements based on an index (1-based)"
 	},
 	"Join operator": {
 		"prefix": "joi",
@@ -100,9 +114,9 @@
 	"Multi track creator": {
 		"prefix": "mtr",
 		"body": [
-			"multi()"
+			"multi(${1:track})"
 		],
-		"description": ""
+		"description": "create a multi-track object from zero or more tracks"
 	},
 	"Note creator": {
 		"prefix": "no",
@@ -123,14 +137,7 @@
 		"body": [
 			"octave(${1:offset},${2:sequenceable})"
 		],
-		"description": "changes the pitch of notes by steps of 12 semitones for one or more musical objects"
-	},
-	"Parallel operator": {
-		"prefix": "par",
-		"body": [
-			"parallel(${1:sequenceable})"
-		],
-		"description": "create a new sequence in which all notes of a musical object are grouped"
+		"description": "change the pitch of notes by steps of 12 semitones for one or more musical objects"
 	},
 	"Pitch operator": {
 		"prefix": "pit",
@@ -172,7 +179,7 @@
 		"body": [
 			"record()"
 		],
-		"description": "creates a recorded sequence of notes from the current MIDI input device"
+		"description": "create a recorded sequence of notes from the current MIDI input device"
 	},
 	"Repeat operator": {
 		"prefix": "rep",
@@ -209,19 +216,12 @@
 		],
 		"description": "create a Sequence using this \u003ca href=\"/melrose/notations.html#sequence-not\"\u003eformat\u003c/a\u003e"
 	},
-	"Serial operator": {
-		"prefix": "ser",
-		"body": [
-			"serial(${1:sequenceable})"
-		],
-		"description": "serialise any grouping of notes from one or more musical objects"
-	},
 	"Track creator": {
 		"prefix": "tr",
 		"body": [
-			"track('${1:title},${2:channel}')"
+			"track('${1:title}',${2:channel})"
 		],
-		"description": ""
+		"description": "create a named track for a given MIDI channel with a musical object"
 	},
 	"Track modifier": {
 		"prefix": "onbar",
@@ -236,5 +236,12 @@
 			"undynamic(${1:sequenceable})"
 		],
 		"description": "set the dymamic to normal for all notes in a musical object"
+	},
+	"Ungroup operator": {
+		"prefix": "ung",
+		"body": [
+			"ungroup(${1:sequenceable})"
+		],
+		"description": "undo any grouping of notes from one or more musical objects"
 	}
 }
