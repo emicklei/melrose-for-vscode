@@ -32,7 +32,7 @@
 		"body": [
 			"fraction(${1:object},${2:object})"
 		],
-		"description": "Creates a new object for which the fraction of duration of all notes are changed.\nThe first parameter controls the fraction of the note, e.g. 1=whole, 0.5 or 2 = half, 0.25 or 4 = quarter, 0.125 or 8 = eight, 0.0625 or 16 = sixteenth.\n"
+		"description": "Creates a new object for which the fraction of duration of all notes are changed.\nThe first parameter controls the fraction of the note, e.g. 1 = whole, 2 = half, 4 = quarter, 8 = eight, 16 = sixteenth.\n"
 	},
 	"Dynamic operator": {
 		"prefix": "dy",
@@ -69,13 +69,6 @@
 		],
 		"description": "iterator that has an array of constant values and evaluates to one. Use next() to increase and rotate the value."
 	},
-	"Iterator creator [I]": {
-		"prefix": "it",
-		"body": [
-			"iterator(${1:array-element})"
-		],
-		"description": "iterator that has an array of constant values and evaluates to one. Use next() to increase and rotate the value."
-	},
 	"Join Map creator": {
 		"prefix": "joinm",
 		"body": [
@@ -84,13 +77,6 @@
 		"description": "creates a new join by mapping elements based on an index (1-based)"
 	},
 	"Join operator": {
-		"prefix": "joi",
-		"body": [
-			"join(${1:first},${2:second})"
-		],
-		"description": "joins two or more musical objects as one"
-	},
-	"Join operator [J]": {
 		"prefix": "joi",
 		"body": [
 			"join(${1:first},${2:second})"
