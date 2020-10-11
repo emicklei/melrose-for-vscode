@@ -1,6 +1,6 @@
 {
     "name": "melrose-for-vscode",
-    "displayName": "Melrōse music coding",
+    "displayName": "Melrose music coding",
     "description": "Interactive music coding with Melrōse",
     "icon": "images/icon.png",
     "version": "1.0.0",
@@ -27,7 +27,7 @@
         "onCommand:melrose-for-vscode.evalAndInspect"
     ],
     "main": "./out/extension.js",
-    "contributes": { 
+    "contributes": {
         "languages": [{
             "id": "melrose",
             "extensions": [".mel", ".melrose"],

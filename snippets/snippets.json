@@ -41,6 +41,13 @@
 		],
 		"description": "Creates a new object for which the fraction of duration of all notes are changed.\nThe first parameter controls the fraction of the note, e.g. 1 = whole, 2 = half, 4 = quarter, 8 = eight, 16 = sixteenth.\n"
 	},
+	"Dynamic Map creator": {
+		"prefix": "dyna",
+		"body": [
+			"dynamicmap('${1:mapping}',${2:object})"
+		],
+		"description": "changes the dynamic of notes from a musical object using an 1-index-based mapping"
+	},
 	"Dynamic operator": {
 		"prefix": "dy",
 		"body": [
@@ -112,11 +119,11 @@
 		"description": "create a multi-track object from zero or more tracks"
 	},
 	"Note creator": {
-		"prefix": "mid",
+		"prefix": "no",
 		"body": [
-			"midi(${1:numberOrDuration},${2:number},${3:number})"
+			"note('${1:letter}')"
 		],
-		"description": "create a Note from MIDI information and is typically used for drum sets.\nThe first parameter is a fraction {1,2,4,8,16}, a duration in milliseconds or a time.Duration.\nSecond parameter is the MIDI number and must be one of [0..127].\nThe third parameter is the velocity (~ loudness) and must be one of [0..127]"
+		"description": "create a Note using this \u003ca href=\"/melrose/notations.html#note-not\"\u003eformat\u003c/a\u003e"
 	},
 	"Octave Map operator": {
 		"prefix": "octavem",
@@ -140,13 +147,6 @@
 		"description": "change the pitch with a delta of semitones"
 	},
 	"Play musical objects in the background": {
-		"prefix": "go",
-		"body": [
-			"go(${1:sequenceable})"
-		],
-		"description": "play all musical objects together in the background (do not wait for completion)"
-	},
-	"Play musical objects in the foreground": {
 		"prefix": "pla",
 		"body": [
 			"play(${1:sequenceable})"
