@@ -31,5 +31,5 @@ This plugin requires the `melrōse` tool which needs to be [installed](https://e
 See (CHANGELOG](https://github.com/emicklei/melrose-for-vscode/blob/master/CHANGELOG.md)
 
 
-Software is licensed under [Apache 2.0 license](LICENSE).
+Software is licensed under [MIT](LICENSE).
 (c) 2019-2020 [ernestmicklei.com](http://ernestmicklei.com)

@@ -32,7 +32,7 @@
 		"body": [
 			"duration(${1:object})"
 		],
-		"description": "computes the duration of the object"
+		"description": "computes the duration of the object using the current BPM"
 	},
 	"Duration fraction operator": {
 		"prefix": "fra",
@@ -95,7 +95,7 @@
 		"body": [
 			"join(${1:first},${2:second})"
 		],
-		"description": "joins two or more musical objects as one"
+		"description": "joins one or more musical objects as one"
 	},
 	"Loop creator": {
 		"prefix": "loo",
@@ -104,12 +104,19 @@
 		],
 		"description": "create a new loop from one or more musical objects; must be assigned to a variable"
 	},
-	"MIDI channel operator": {
+	"MIDI channel selector": {
 		"prefix": "chan",
 		"body": [
 			"channel(${1:number},${2:sequenceable})"
 		],
 		"description": "select a MIDI channel, must be in [1..16]; must be a top-level operator"
+	},
+	"MIDI device selector": {
+		"prefix": "dev",
+		"body": [
+			"device(${1:number},${2:sequenceable})"
+		],
+		"description": "select a MIDI device from the available device IDs; must become before channel"
 	},
 	"Multi track creator": {
 		"prefix": "mtr",
@@ -119,11 +126,11 @@
 		"description": "create a multi-track object from zero or more tracks"
 	},
 	"Note creator": {
-		"prefix": "no",
+		"prefix": "mid",
 		"body": [
-			"note('${1:letter}')"
+			"midi(${1:numberOrDuration},${2:number},${3:number})"
 		],
-		"description": "create a Note using this \u003ca href=\"/melrose/notations.html#note-not\"\u003eformat\u003c/a\u003e"
+		"description": "create a Note from MIDI information and is typically used for drum sets.\nThe first parameter is a fraction {1,2,4,8,16} or a duration in milliseconds or a time.Duration.\nSecond parameter is the MIDI number and must be one of [0..127].\nThe third parameter is the velocity (~ loudness) and must be one of [0..127]"
 	},
 	"Octave Map operator": {
 		"prefix": "octavem",
@@ -167,19 +174,12 @@
 		],
 		"description": "create a random integer generator. Use next() to generate a new integer"
 	},
-	"Recording creator": {
-		"prefix": "rec",
-		"body": [
-			"record()"
-		],
-		"description": "create a recorded sequence of notes from the current MIDI input device"
-	},
 	"Repeat operator": {
 		"prefix": "rep",
 		"body": [
-			"repeat(${1:times},${2:sequenceable})"
+			"repeat(${1:times},${2:sequenceables})"
 		],
-		"description": "repeat the musical object a number of times"
+		"description": "repeat one or more musical objects a number of times"
 	},
 	"Reverse operator": {
 		"prefix": "rev",
