@@ -145,9 +145,11 @@ function evalWithAction(action: string) {
 		}
 	}).finally(() => {
 		let isLoop = false;
+		let isListen = false;
 		// TODO put this in separate func
 		if (successResponseData !== null) {
 			isLoop = successResponseData.type === '*core.Loop'; // TODO have better response			
+			isListen = successResponseData.type === '*control.Listen'; // TODO have better response			
 			if (successResponseData.message !== undefined) {
 				// debug info				
 				if (successResponseData.object !== undefined && successResponseData.object !== null) {
@@ -183,7 +185,7 @@ function evalWithAction(action: string) {
 			}
 			if (action === 'play') {
 				activeEditor.setDecorations(playDecorationType, rangeExecuted);
-				if (isLoop) {
+				if (isLoop || isListen) {
 					addBreakpointOnSelectionLine();
 				}
 			}
