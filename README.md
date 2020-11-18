@@ -7,11 +7,12 @@ A statement is evaluated by using the shortcut `cmd+E` and takes the content of 
 
 ## Features
 
-- direct evaluation of `melrōse` expressions using `cmd+E`
-- direct play of `melrose` expressions using `cmd+3`
-- loop begin `cmd+4` and loop end `cmd+5`
-- stop looping and playing `cmd+k`
-- inspect musial object `cmd+2`
+- `cmd+2` = inspect musial object
+- `cmd+3` = direct play of `melrose` expressions or loop
+- `cmd+4` = loop begin 
+- `cmd+5` = loop end 
+- `cmd+e` = only evaluate one or more`melrōse` expressions
+- `cmd+k` = stop looping and playing 
 - syntax highlighting
 - visual feedback of the success of evaluation
     - flash green means OK
@@ -20,7 +21,7 @@ A statement is evaluated by using the shortcut `cmd+E` and takes the content of 
 
 ## Requirements
 
-This plugin requires the `melrōse` tool which needs to be [installed](https://emicklei.github.io/melrose/) and run separately in a Terminal Window.
+This plugin requires the `melrōse` tool which needs to be [installed](http://github.com/emicklei/melrose) and run separately in a Terminal Window.
 
 ## Known Issues
 
@@ -32,4 +33,4 @@ See (CHANGELOG](https://github.com/emicklei/melrose-for-vscode/blob/master/CHANG
 
 
 Software is licensed under [MIT](LICENSE).
-(c) 2019-2020 [ernestmicklei.com](http://ernestmicklei.com)
+&copy; 2019-2020 [ernestmicklei.com](http://ernestmicklei.com)

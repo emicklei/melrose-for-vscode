@@ -11,7 +11,7 @@
 		"body": [
 			"biab(${1:beats-in-a-bar})"
 		],
-		"description": "set the Beats in a Bar [1..6]; default is 4"
+		"description": "set the Beats in a Bar [1..16]; default is 4"
 	},
 	"Begin loop command": {
 		"prefix": "beg",
@@ -160,7 +160,14 @@
 		],
 		"description": "change the pitch with a delta of semitones"
 	},
-	"Play musical objects in the background": {
+	"Play musical objects at the same time. Use play() for serial playing": {
+		"prefix": "syn",
+		"body": [
+			"sync(${1:sequenceable})"
+		],
+		"description": "play all musical objects"
+	},
+	"Play musical objects in order. Use sync() for parallel playing": {
 		"prefix": "pla",
 		"body": [
 			"play(${1:sequenceable})"
@@ -215,6 +222,13 @@
 			"sequence('${1:space-separated-notes}')"
 		],
 		"description": "create a Sequence using this \u003ca href=\"/melrose/notations.html#sequence-not\"\u003eformat\u003c/a\u003e"
+	},
+	"Stretch operator": {
+		"prefix": "st",
+		"body": [
+			"stretch(${1:factor},${2:object})"
+		],
+		"description": "stretches the duration of musical object(s) with a factor. If the factor \u003c 1 then duration is shortened"
 	},
 	"Track creator": {
 		"prefix": "tr",

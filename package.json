@@ -56,7 +56,7 @@
                 "id": "melrose.playBackground",
                 "description": "Background decoration color for play lines",
                 "defaults": {
-                    "dark": "#00fff241",
+                    "dark": "#0d87cee5",
                     "light": "#d0ff00ef",
                     "highContrast": "#fbff00e8"
                 }
