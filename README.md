@@ -14,10 +14,18 @@ A statement is evaluated by using the shortcut `cmd+e` and takes the content of 
 - `cmd+e` = only evaluate one or more `melrōse` expressions
 - `cmd+k` = stop looping and playing 
 - syntax highlighting
+- hover support for
+    - variable
+    - function
 - visual feedback of the success of evaluation
     - flash green means OK
     - flash blue means PLAY
     - flash red means ERROR
+
+## Working with melrōse
+
+![screenshot.png](https://emicklei.github.io/melrose/images/screenshot.png)
+
 
 ## Requirements
 
@@ -29,7 +37,7 @@ This plugin requires the `melrōse` tool which needs to be [installed](http://gi
 
 ## Release Notes
 
-See (CHANGELOG](https://github.com/emicklei/melrose-for-vscode/blob/master/CHANGELOG.md)
+See [CHANGELOG](https://github.com/emicklei/melrose-for-vscode/blob/master/CHANGELOG.md)
 
 
 Software is licensed under [MIT](LICENSE).
