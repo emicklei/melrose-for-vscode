@@ -2,8 +2,8 @@
 
 This plugin is used to edit musical expressions for the [melrōse](http://github.com/emicklei/melrose) music programming tool.
 Musical statements can be created with `.mel` or `.melrose` files.
-Each statements can be evaluated directly with the connected `melrōse` tool, which needs to be started separately, typically in a Terminal Window.
-A statement is evaluated by using the shortcut `cmd+E` and takes the content of the active line (where the cursor is), or the content of the selected text in the editor.
+Each statement can be evaluated directly with the connected `melrōse` tool, which needs to be started separately, typically in a Terminal Window.
+A statement is evaluated by using the shortcut `cmd+e` and takes the content of the active line (where the cursor is), or the content of the selected text in the editor.
 
 ## Features
 
@@ -11,7 +11,7 @@ A statement is evaluated by using the shortcut `cmd+E` and takes the content of 
 - `cmd+3` = direct play of `melrose` expressions or loop
 - `cmd+4` = loop begin 
 - `cmd+5` = loop end 
-- `cmd+e` = only evaluate one or more`melrōse` expressions
+- `cmd+e` = only evaluate one or more `melrōse` expressions
 - `cmd+k` = stop looping and playing 
 - syntax highlighting
 - visual feedback of the success of evaluation
@@ -33,4 +33,5 @@ See (CHANGELOG](https://github.com/emicklei/melrose-for-vscode/blob/master/CHANG
 
 
 Software is licensed under [MIT](LICENSE).
+
 &copy; 2019-2020 [ernestmicklei.com](http://ernestmicklei.com)
