@@ -71,6 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable8 = vscode.languages.registerHoverProvider(
 		{ scheme: 'file', language: 'melrose' }, {
 		provideHover: async (doc: vscode.TextDocument, pos: vscode.Position): Promise<vscode.Hover> => {
+			//console.log("hover request");
 			let range = doc.getWordRangeAtPosition(pos);
 			let token = doc.getText(range);
 			let response = await axios({
@@ -82,12 +83,15 @@ export function activate(context: vscode.ExtensionContext) {
 				headers: { 'Content-Type': 'text/plain; charset=UTF-8' }
 			});
 			if (!response || !response.data || !response.data.MarkdownString) {
+				console.error("hover fail", response);
 				return new vscode.Hover('');
 			}
-			return new vscode.Hover(<vscode.MarkdownString>{
-				value: response.data.MarkdownString,
-				isTrusted: true
-			}, range);
+			//console.log("hover data", response.data.MarkdownString);
+			// return new vscode.Hover(<vscode.MarkdownString>{
+			// 	value: response.data.MarkdownString,
+			// 	isTrusted: true
+			// }, range);
+			return new vscode.Hover(response.data.MarkdownString, range);
 		}
 	});
 	context.subscriptions.push(disposable8);
