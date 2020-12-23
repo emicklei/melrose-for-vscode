@@ -86,12 +86,10 @@ export function activate(context: vscode.ExtensionContext) {
 				console.error("hover fail", response);
 				return new vscode.Hover('');
 			}
-			//console.log("hover data", response.data.MarkdownString);
-			// return new vscode.Hover(<vscode.MarkdownString>{
-			// 	value: response.data.MarkdownString,
-			// 	isTrusted: true
-			// }, range);
-			return new vscode.Hover(response.data.MarkdownString, range);
+			// console.log("hover data", response.data.MarkdownString);
+			let ms = new vscode.MarkdownString(response.data.MarkdownString);
+			ms.isTrusted = true;
+			return new vscode.Hover(ms, range);
 		}
 	});
 	context.subscriptions.push(disposable8);
