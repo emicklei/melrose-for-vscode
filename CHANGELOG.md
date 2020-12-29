@@ -3,6 +3,10 @@
 All notable changes to the "melrose-for-vscode" extension will be documented in this file.
 
 
+## [0.34.1]
+
+- Renamed sequencemap to resequence
+
 ## [0.33.0]
 
 - Fix highlighting keywords
