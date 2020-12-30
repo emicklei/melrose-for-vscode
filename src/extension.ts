@@ -93,6 +93,29 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 	context.subscriptions.push(disposable8);
+
+	vscode.debug.onDidChangeBreakpoints(e => {
+		//console.log(`Event: a: ${e.added.length} r: ${e.removed.length} c: ${e.changed.length}`);
+		//if (e.added.length) { console.log('added: ', JSON.stringify(e.added)); }
+		if (e.removed.length) {
+			let activeEditor = vscode.window.activeTextEditor;
+			if (!activeEditor) {
+				// not in editor
+				return;
+			}
+			for (let each of e.removed) {
+				let srcpb = each as vscode.SourceBreakpoint;
+				let text = activeEditor.document.lineAt(srcpb.location.range.start).text;
+				//console.log('removed: ', JSON.stringify(e.removed));
+				//console.log('ending: ', text);
+				let rangeExecuted: vscode.DecorationOptions[] = [];
+				rangeExecuted.push({ range: new vscode.Range(srcpb.location.range.start, srcpb.location.range.end) });
+				sendActionWithText("end", srcpb.location.range.start.line, text, rangeExecuted);
+			}
+		}
+		//if (e.changed.length) { console.log('changed: ', JSON.stringify(e.changed)); }
+		//console.log('breakpoints after event: ', JSON.stringify(vscode.debug.breakpoints));
+	});
 }
 
 // this method is called when your extension is deactivated
@@ -121,8 +144,17 @@ function evalWithAction(action: string) {
 		text = activeEditor.document.getText(selection);
 		rangeExecuted.push({ range: new vscode.Range(selection.start, selection.end) });
 	}
+	sendActionWithText(action, line, text, rangeExecuted);
+}
+
+function sendActionWithText(action: string, line: number, text: string, rangeExecuted: vscode.DecorationOptions[]) {
 	if (text.length === 0) {
 		// nothing to post
+		return;
+	}
+	let activeEditor = vscode.window.activeTextEditor;
+	if (!activeEditor) {
+		// not in editor
 		return;
 	}
 	var success = true;
@@ -146,12 +178,13 @@ function evalWithAction(action: string) {
 			console.error(err);
 		}
 	}).finally(() => {
-		let isLoop = false;
-		let isListen = false;
+		let isStoppable = false;
 		// TODO put this in separate func
 		if (successResponseData !== null) {
-			isLoop = successResponseData.type === '*core.Loop'; // TODO have better response			
-			isListen = successResponseData.type === '*control.Listen'; // TODO have better response			
+			isStoppable =
+				successResponseData.type === '*core.Loop' ||
+				successResponseData.type === 'control.SyncPlay' ||
+				successResponseData.type === '*control.Listen'; // TODO have better response			
 			if (successResponseData.message !== undefined) {
 				// debug info				
 				if (successResponseData.object !== undefined && successResponseData.object !== null) {
@@ -187,7 +220,7 @@ function evalWithAction(action: string) {
 			}
 			if (action === 'play') {
 				activeEditor.setDecorations(playDecorationType, rangeExecuted);
-				if (isLoop || isListen) {
+				if (isStoppable) {
 					addBreakpointOnSelectionLine();
 				}
 			}
