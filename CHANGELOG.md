@@ -3,6 +3,10 @@
 All notable changes to the "melrose-for-vscode" extension will be documented in this file.
 
 
+## [0.35.0]
+
+- Stop loops and listeners by removing red indicator in editor
+
 ## [0.34.1]
 
 - Renamed sequencemap to resequence
