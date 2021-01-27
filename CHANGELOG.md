@@ -3,6 +3,10 @@
 All notable changes to the "melrose-for-vscode" extension will be documented in this file.
 
 
+## [0.36.0]
+
+- Update grammar rules to reflect new function in release v0.36.0 of melrōse.
+
 ## [0.35.0]
 
 - Stop loops and listeners by removing red indicator in editor
