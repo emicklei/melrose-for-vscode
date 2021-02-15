@@ -127,6 +127,11 @@ function evalWithAction(action: string) {
 		// not in editor
 		return;
 	}
+	if (activeEditor.document.languageId !== "melrose") {
+		// not a Melrose file
+		console.log("not a Melrōse script");
+		return;
+	}
 	// if text is selection then use that
 	// else use the line at which the cursor is at
 	let text = '';
@@ -152,13 +157,13 @@ function sendActionWithText(action: string, line: number, text: string, rangeExe
 		// nothing to post
 		return;
 	}
+	var success = true;
+	var successResponseData: any = null;
 	let activeEditor = vscode.window.activeTextEditor;
 	if (!activeEditor) {
 		// not in editor
 		return;
 	}
-	var success = true;
-	var successResponseData: any = null;
 	axios({
 		method: 'post',
 		url: 'http://localhost:8118/v1/statements?debug=false&line=' + (line + 1) + '&action=' + action + '&file=' + activeEditor.document.fileName, // line is zero-based
@@ -182,6 +187,7 @@ function sendActionWithText(action: string, line: number, text: string, rangeExe
 		// TODO put this in separate func
 		if (successResponseData !== null) {
 			isStoppable =
+				successResponseData.stoppable === true ||
 				successResponseData.type === '*core.Loop' ||
 				successResponseData.type === 'control.SyncPlay' ||
 				successResponseData.type === '*control.Listen'; // TODO have better response			
