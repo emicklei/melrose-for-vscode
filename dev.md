@@ -8,5 +8,6 @@ https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#sco
 
 ## How to publish
 
+  vsce package
   vsce publish 0.34.1
   vsce publish minor

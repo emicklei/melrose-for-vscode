@@ -3,7 +3,7 @@
 All notable changes to the "melrose-for-vscode" extension will be documented in this file.
 
 
-## [0.37.0]
+## [0.37.1]
 
 - Update grammar (end->stop), command now checks language.
 
