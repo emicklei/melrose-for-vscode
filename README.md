@@ -8,11 +8,10 @@ A statement is evaluated by using the shortcut `cmd+e` and takes the content of 
 ## Features
 
 - `cmd+2` = inspect musial object
-- `cmd+3` = direct play of `melrose` expressions or loop
-- `cmd+4` = loop begin 
-- `cmd+5` = loop end 
+- `cmd+3` = direct play of `melrose` expressions,loop,listen or recording
+- `cmd+5` = stop 
 - `cmd+e` = only evaluate one or more `melrōse` expressions
-- `cmd+k` = stop looping and playing 
+- `cmd+k` = stop all
 - syntax highlighting
 - hover support for
     - variable
@@ -42,4 +41,4 @@ See [CHANGELOG](https://github.com/emicklei/melrose-for-vscode/blob/master/CHANG
 
 Software is licensed under [MIT](LICENSE).
 
-&copy; 2019-2020 [ernestmicklei.com](http://ernestmicklei.com)
+&copy; 2019-2021 [ernestmicklei.com](http://ernestmicklei.com)
