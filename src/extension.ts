@@ -72,8 +72,12 @@ export function activate(context: vscode.ExtensionContext) {
 		{ scheme: 'file', language: 'melrose' }, {
 		provideHover: async (doc: vscode.TextDocument, pos: vscode.Position): Promise<vscode.Hover> => {
 			//console.log("hover request");
-			let range = doc.getWordRangeAtPosition(pos);
+			let range = doc.getWordRangeAtPosition(pos);			
 			let token = doc.getText(range);
+			// sometimes the range represents the full content; it will never match
+			if (!range?.isSingleLine) {
+				return new vscode.Hover('');
+			}
 			let response = await axios({
 				method: 'post',
 				url: 'http://localhost:8118/v1/inspect?debug=false',
@@ -219,6 +223,7 @@ function sendActionWithText(action: string, line: number, text: string, rangeExe
 				addBreakpointOnSelectionLine();
 			}
 			if (action === 'end') {
+				// TODO could come from breakpoint remove ; this cause duplicate send message
 				removeBreakpointOnSelectionLine();
 			}
 			if (action === 'kill') {
