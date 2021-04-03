@@ -86,15 +86,11 @@
                 "title": "Melrose Object Play"
             },
             {
-                "command": "melrose-for-vscode.evalAndEnd",
-                "title": "Melrose Loop End"
+                "command": "melrose-for-vscode.evalAndStop",
+                "title": "Melrose Object Stop"
             },
             {
-                "command": "melrose-for-vscode.evalAndBegin",
-                "title": "Melrose Loop Begin"
-            },
-            {
-                "command": "melrose-for-vscode.evalAndBegin",
+                "command": "melrose-for-vscode.evalAndKill",
                 "title": "Melrose Play Kill"
             },
             {
@@ -113,12 +109,7 @@
                 "mac": "cmd+3"
             },
             {
-                "command": "melrose-for-vscode.evalAndBegin",
-                "key": "ctrl+4",
-                "mac": "cmd+4"
-            },
-            {
-                "command": "melrose-for-vscode.evalAndEnd",
+                "command": "melrose-for-vscode.evalAndStop",
                 "key": "ctrl+5",
                 "mac": "cmd+5"
             },

@@ -48,15 +48,10 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 	context.subscriptions.push(disposable2);
 
-	let disposable3 = vscode.commands.registerCommand('melrose-for-vscode.evalAndEnd', () => {
-		evalWithAction('end');
+	let disposable3 = vscode.commands.registerCommand('melrose-for-vscode.evalAndStop', () => {
+		evalWithAction('stop');
 	});
 	context.subscriptions.push(disposable3);
-
-	let disposable4 = vscode.commands.registerCommand('melrose-for-vscode.evalAndBegin', () => {
-		evalWithAction('begin');
-	});
-	context.subscriptions.push(disposable4);
 
 	let disposable5 = vscode.commands.registerCommand('melrose-for-vscode.kill', () => {
 		evalWithAction('kill');
@@ -114,7 +109,7 @@ export function activate(context: vscode.ExtensionContext) {
 				//console.log('ending: ', text);
 				let rangeExecuted: vscode.DecorationOptions[] = [];
 				rangeExecuted.push({ range: new vscode.Range(srcpb.location.range.start, srcpb.location.range.end) });
-				sendActionWithText("end", srcpb.location.range.start.line, text, rangeExecuted);
+				sendActionWithText("stop", srcpb.location.range.start.line, text, rangeExecuted);
 			}
 		}
 		//if (e.changed.length) { console.log('changed: ', JSON.stringify(e.changed)); }
@@ -190,11 +185,7 @@ function sendActionWithText(action: string, line: number, text: string, rangeExe
 		let isStoppable = false;
 		// TODO put this in separate func
 		if (successResponseData !== null) {
-			isStoppable =
-				successResponseData.stoppable === true ||
-				successResponseData.type === '*core.Loop' ||
-				successResponseData.type === 'control.SyncPlay' ||
-				successResponseData.type === '*control.Listen'; // TODO have better response			
+			isStoppable = successResponseData.stoppable === true; // TODO have better response			
 			if (successResponseData.message !== undefined) {
 				// debug info				
 				if (successResponseData.object !== undefined && successResponseData.object !== null) {
@@ -219,10 +210,7 @@ function sendActionWithText(action: string, line: number, text: string, rangeExe
 				}
 
 			}
-			if (action === 'begin') {
-				addBreakpointOnSelectionLine();
-			}
-			if (action === 'end') {
+			if (action === 'stop') {
 				// TODO could come from breakpoint remove ; this cause duplicate send message
 				removeBreakpointOnSelectionLine();
 			}
