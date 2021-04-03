@@ -8,6 +8,7 @@ https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#sco
 
 ## How to publish
 
+  update version in package.json
+
   vsce package
-  vsce publish 0.34.1
-  vsce publish minor
+  vsce publish 0.39.0 
