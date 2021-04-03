@@ -3,6 +3,13 @@
 All notable changes to the "melrose-for-vscode" extension will be documented in this file.
 
 
+## [0.39.0]
+
+- Update commands: remove "begin" and "end", add "stop".
+- Update grammar from melrose version 0.30.0
+- Fix hover problem showing full source
+-  
+
 ## [0.37.1]
 
 - Update grammar (end->stop), command now checks language.
