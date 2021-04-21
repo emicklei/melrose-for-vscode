@@ -136,7 +136,6 @@ function evalWithAction(action: string) {
 	let text = '';
 	let rangeExecuted: vscode.DecorationOptions[] = [];
 	let selection = activeEditor.selection;
-	let line = selection.active.line;
 	if (selection.isEmpty) {
 		// no selection, take current line content
 		text = activeEditor.document.lineAt(selection.active.line).text;
@@ -144,11 +143,11 @@ function evalWithAction(action: string) {
 		const startPos = position.with(position.line, 0);
 		const endPos = position.with(position.line, text.length);
 		rangeExecuted.push({ range: new vscode.Range(startPos, endPos) });
-	} else {
+	} else {		
 		text = activeEditor.document.getText(selection);
 		rangeExecuted.push({ range: new vscode.Range(selection.start, selection.end) });
 	}
-	sendActionWithText(action, line, text, rangeExecuted);
+	sendActionWithText(action, selection.end.line, text, rangeExecuted);
 }
 
 function sendActionWithText(action: string, line: number, text: string, rangeExecuted: vscode.DecorationOptions[]) {
