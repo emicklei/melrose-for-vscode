@@ -3,7 +3,7 @@
     "displayName": "Melrose music coding",
     "description": "Interactive music coding with Melrōse",
     "icon": "images/icon.png",
-    "version": "0.39.0",
+    "version": "0.39.1",
     "publisher": "EMicklei",
     "license": "SEE LICENSE IN LICENSE.txt",
     "homepage": "https://github.com/emicklei/melrose-for-vscode/blob/master/README.md",
@@ -29,27 +29,34 @@
     ],
     "main": "./out/extension.js",
     "contributes": {
-        "languages": [{
-            "id": "melrose",
-            "extensions": [
-                ".mel",
-                ".melrose"
-            ],
-            "aliases": [
-                "Melrose"
-            ],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "melrose",
-            "path": "./syntaxes/melrose.tmGrammar.json",
-            "scopeName": "source.melrose"
-        }],
-        "snippets": [{
-            "language": "melrose",
-            "path": "./snippets/snippets.json"
-        }],
-        "colors": [{
+        "languages": [
+            {
+                "id": "melrose",
+                "extensions": [
+                    ".mel",
+                    ".melrose"
+                ],
+                "aliases": [
+                    "Melrose"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "melrose",
+                "path": "./syntaxes/melrose.tmGrammar.json",
+                "scopeName": "source.melrose"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "melrose",
+                "path": "./snippets/snippets.json"
+            }
+        ],
+        "colors": [
+            {
                 "id": "melrose.executedBackground",
                 "description": "Background decoration color for executed lines",
                 "defaults": {
@@ -77,7 +84,8 @@
                 }
             }
         ],
-        "commands": [{
+        "commands": [
+            {
                 "command": "melrose-for-vscode.eval",
                 "title": "Melrose Evaluate"
             },
@@ -98,7 +106,8 @@
                 "title": "Melrose Inspect"
             }
         ],
-        "keybindings": [{
+        "keybindings": [
+            {
                 "command": "melrose-for-vscode.eval",
                 "key": "ctrl+e",
                 "mac": "cmd+e"
