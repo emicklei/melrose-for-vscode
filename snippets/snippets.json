@@ -13,26 +13,19 @@
 		],
 		"description": "set the Beats in a Bar; default is 4"
 	},
-	"Begin loop command": {
-		"prefix": "beg",
-		"body": [
-			"begin(${1:loop})"
-		],
-		"description": "begin loop(s). Ignore if it was running."
-	},
 	"Chord creator": {
 		"prefix": "cho",
 		"body": [
 			"chord('${1:note}')"
 		],
-		"description": "create a Chord from its string \u003ca href=\"/melrose/notations.html#chord-not\"\u003enotation\u003c/a\u003e"
+		"description": "create a Chord from its string \u003ca href=\"/docs/reference/notations/#chord\"\u003eformat\u003c/a\u003e"
 	},
 	"Chord progression creator": {
 		"prefix": "pro",
 		"body": [
 			"progression('${1:scale}','${2:space-separated-roman-chords}')"
 		],
-		"description": ""
+		"description": "create a Chord progression using this \u003ca href=\"/docs/reference/notations/#chordprogression\"\u003eformat\u003c/a\u003e"
 	},
 	"Duration calculator": {
 		"prefix": "dur",
@@ -60,7 +53,7 @@
 		"body": [
 			"dynamic(${1:emphasis},${2:object})"
 		],
-		"description": "Creates a new modified musical object for which the dynamics of all notes are changed.\n\tThe first parameter controls the emphasis the note, e.g. + (mezzoforte,mf), -- (piano,p).\n\t"
+		"description": "Creates a new modified musical object for which the dynamics of all notes are changed.\n\tThe first parameter controls the emphasis the note, e.g. + (mezzoforte,mf), -- (piano,p) or a velocity [0..127].\n\t"
 	},
 	"Fraction Map operator": {
 		"prefix": "frm",
@@ -121,9 +114,9 @@
 	"Loop creator": {
 		"prefix": "loo",
 		"body": [
-			"lp_${1:object} = loop(${1:object})"
+			"loop(${1:object})"
 		],
-		"description": "create a new loop from one or more musical objects; must be assigned to a variable"
+		"description": "create a new loop from one or more musical objects"
 	},
 	"MIDI channel selector": {
 		"prefix": "chan",
@@ -151,7 +144,14 @@
 		"body": [
 			"note('${1:letter}')"
 		],
-		"description": "create a Note using this \u003ca href=\"/melrose/notations.html#note-not\"\u003eformat\u003c/a\u003e"
+		"description": "create a Note using this \u003ca href=\"/docs/reference/notations/#note\"\u003eformat\u003c/a\u003e"
+	},
+	"Octave Map operator": {
+		"prefix": "octavem",
+		"body": [
+			"octavemap('${1:int2int}',${2:object})"
+		],
+		"description": "create a sequence with notes for which the order and the octaves are changed"
 	},
 	"Octave operator": {
 		"prefix": "oct",
@@ -168,6 +168,13 @@
 		"description": "create a sequence with notes for which the order and the pitch are changed. 1-based indexing"
 	},
 	"Pitch operator": {
+		"prefix": "pit",
+		"body": [
+			"pitch(${1:semitones},${2:sequenceable})"
+		],
+		"description": "change the pitch with a delta of semitones"
+	},
+	"Pitch operator [transpose]": {
 		"prefix": "pit",
 		"body": [
 			"pitch(${1:semitones},${2:sequenceable})"
@@ -214,14 +221,14 @@
 		"body": [
 			"scale(${1:octaves},'${2:scale-syntax}')"
 		],
-		"description": "create a Scale using this \u003ca href=\"/melrose/notations.html#scale-not\"\u003eformat\u003c/a\u003e"
+		"description": "create a Scale using this \u003ca href=\"/docs/reference/notations/#scale\"\u003eformat\u003c/a\u003e"
 	},
 	"Sequence creator": {
 		"prefix": "seq",
 		"body": [
 			"sequence('${1:space-separated-notes}')"
 		],
-		"description": "create a Sequence using this \u003ca href=\"/melrose/notations.html#sequence-not\"\u003eformat\u003c/a\u003e"
+		"description": "create a Sequence using this \u003ca href=\"/docs/reference/notations/#sequence\"\u003eformat\u003c/a\u003e"
 	},
 	"Sequence modifier": {
 		"prefix": "resq",
@@ -235,7 +242,7 @@
 		"body": [
 			"chordsequence('${1:chords}')"
 		],
-		"description": "create a Chord sequence using this \u003ca href=\"/melrose/notations.html#chordsequence-not\"\u003eformat\u003c/a\u003e"
+		"description": "create a Chord sequence using this \u003ca href=\"/docs/reference/notations/#chordsequence\"\u003eformat\u003c/a\u003e"
 	},
 	"Stretch operator": {
 		"prefix": "st",
