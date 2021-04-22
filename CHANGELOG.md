@@ -2,6 +2,9 @@
 
 All notable changes to the "melrose-for-vscode" extension will be documented in this file.
 
+## [0.39.1]
+
+- Fix line end when selecting upwards.
 
 ## [0.39.0]
 
