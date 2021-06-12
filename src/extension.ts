@@ -151,10 +151,6 @@ function evalWithAction(action: string) {
 }
 
 function sendActionWithText(action: string, line: number, text: string, rangeExecuted: vscode.DecorationOptions[]) {
-	if (text.length === 0) {
-		// nothing to post
-		return;
-	}
 	var success = true;
 	var successResponseData: any = null;
 	let activeEditor = vscode.window.activeTextEditor;
