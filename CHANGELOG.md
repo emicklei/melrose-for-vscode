@@ -2,6 +2,10 @@
 
 All notable changes to the "melrose-for-vscode" extension will be documented in this file.
 
+## [0.40.0]
+
+- Handle trailing whitespace in selection of program to play.
+
 ## [0.39.1]
 
 - Fix line end when selecting upwards.

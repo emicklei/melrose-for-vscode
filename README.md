@@ -23,7 +23,7 @@ A statement is evaluated by using the shortcut `cmd+e` and takes the content of 
 
 ## Working with melrōse
 
-![screenshot.png](https://emicklei.github.io/melrose/images/screenshot.png)
+![screenshot.png](https://raw.githubusercontent.com/emicklei/melrose/master/docs/images/riboluta-melrose.png)
 
 
 ## Requirements

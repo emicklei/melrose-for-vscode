@@ -6,6 +6,11 @@ https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#sco
   https://stackoverflow.com/questions/48306520/how-can-i-implement-my-own-code-outline-layout-in-vscode
 
 
+## Refresh Personal Access Token
+
+https://dev.azure.com/ernestmicklei
+vsce login EMicklei
+
 ## How to publish
 
   update version in package.json

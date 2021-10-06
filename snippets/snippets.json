@@ -63,7 +63,7 @@
 		"description": "create a sequence with notes for which the fractions are changed. 1-based indexing. use space or comma as separator"
 	},
 	"Group operator": {
-		"prefix": "par",
+		"prefix": "gro",
 		"body": [
 			"group(${1:sequenceable})"
 		],
@@ -160,27 +160,6 @@
 		],
 		"description": "change the pitch of notes by steps of 12 semitones for one or more musical objects"
 	},
-	"Pitch Map operator": {
-		"prefix": "pitchm",
-		"body": [
-			"pitchmap('${1:int2int}',${2:object})"
-		],
-		"description": "create a sequence with notes for which the order and the pitch are changed. 1-based indexing"
-	},
-	"Pitch operator": {
-		"prefix": "pit",
-		"body": [
-			"pitch(${1:semitones},${2:sequenceable})"
-		],
-		"description": "change the pitch with a delta of semitones"
-	},
-	"Pitch operator [transpose]": {
-		"prefix": "pit",
-		"body": [
-			"pitch(${1:semitones},${2:sequenceable})"
-		],
-		"description": "change the pitch with a delta of semitones"
-	},
 	"Play musical objects in order. Use sync() for parallel playing": {
 		"prefix": "pla",
 		"body": [
@@ -272,6 +251,20 @@
 		],
 		"description": "puts a musical object on a track to start at a specific bar"
 	},
+	"Transpose operator": {
+		"prefix": "tran",
+		"body": [
+			"transpose(${1:semitones},${2:sequenceable})"
+		],
+		"description": "change the pitch with a delta of semitones"
+	},
+	"Transpose operator [pitch]": {
+		"prefix": "tran",
+		"body": [
+			"transpose(${1:semitones},${2:sequenceable})"
+		],
+		"description": "change the pitch with a delta of semitones"
+	},
 	"Undo dynamic operator": {
 		"prefix": "und",
 		"body": [
@@ -285,5 +278,12 @@
 			"ungroup(${1:sequenceable})"
 		],
 		"description": "undo any grouping of notes from one or more musical objects"
+	},
+	"Velocity Map operator": {
+		"prefix": "velocitym",
+		"body": [
+			"velocitymap('${1:int2int}',${2:object})"
+		],
+		"description": "create a sequence with notes for which the order and the velocities are changed. Velocity 0 means no change."
 	}
 }

@@ -215,7 +215,13 @@ function sendActionWithText(action: string, line: number, text: string, rangeExe
 			if (action === 'play') {
 				activeEditor.setDecorations(playDecorationType, rangeExecuted);
 				if (isStoppable) {
-					addBreakpointOnSelectionLine();
+					var line = successResponseData.line;
+					if (line !== undefined && line > 0) {
+						addBreakpointOnLine(line-1);// zero-based
+					} else {
+						console.log("on selection line");
+						addBreakpointOnSelectionLine();
+					}
 				}
 			}
 			if (action === 'eval') {
@@ -248,6 +254,18 @@ function addBreakpointOnSelectionLine() {
 	let selections = activeEditor.selections;
 	const bps: vscode.Breakpoint[] = [];
 	bps.push(new vscode.SourceBreakpoint(new vscode.Location(document.uri, new vscode.Position(selections[0].end.line, 0))));
+	vscode.debug.addBreakpoints(bps);
+}
+
+function addBreakpointOnLine(line: number) {
+	let activeEditor = vscode.window.activeTextEditor;
+	if (!activeEditor) {
+		// not in editor
+		return;
+	}
+	let document = activeEditor.document;
+	const bps: vscode.Breakpoint[] = [];
+	bps.push(new vscode.SourceBreakpoint(new vscode.Location(document.uri, new vscode.Position(line, 0))));
 	vscode.debug.addBreakpoints(bps);
 }
 
