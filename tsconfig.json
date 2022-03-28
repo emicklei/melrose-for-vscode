@@ -4,7 +4,8 @@
 		"target": "es6",
 		"outDir": "out",
 		"lib": [
-			"ES6"
+			"ES6",
+			"DOM" /** added to fix AbortSignal unknown error, should not be needed **/		
 		],
 		"sourceMap": true,
 		"rootDir": "src",
