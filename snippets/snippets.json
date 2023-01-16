@@ -203,7 +203,7 @@
 		"description": "create a Scale using this \u003ca href=\"/docs/reference/notations/#scale\"\u003eformat\u003c/a\u003e"
 	},
 	"Sequence creator": {
-		"prefix": "seq",
+		"prefix": "se",
 		"body": [
 			"sequence('${1:space-separated-notes}')"
 		],
