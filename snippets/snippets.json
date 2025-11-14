@@ -13,13 +13,6 @@
 		],
 		"description": "set the Beats in a Bar; default is 4"
 	},
-	"Chord creator": {
-		"prefix": "cho",
-		"body": [
-			"chord('${1:note}')"
-		],
-		"description": "create a Chord from its string \u003ca href=\"/docs/reference/notations/#chord\"\u003eformat\u003c/a\u003e"
-	},
 	"Chord progression creator": {
 		"prefix": "pro",
 		"body": [
@@ -140,7 +133,7 @@
 		"description": "create a multi-track object from zero or more tracks"
 	},
 	"Note creator": {
-		"prefix": "no",
+		"prefix": "not",
 		"body": [
 			"note('${1:letter}')"
 		],
@@ -172,7 +165,7 @@
 		"body": [
 			"prob(${1:perc},${2:note-or-sequenceable})"
 		],
-		"description": ""
+		"description": "Creates a new musical object for which the notes are played with a certain probability"
 	},
 	"Random generator": {
 		"prefix": "ra",
@@ -198,7 +191,7 @@
 	"Scale creator": {
 		"prefix": "sc",
 		"body": [
-			"scale(${1:octaves},'${2:scale-syntax}')"
+			"scale('${1:scale-syntax}')"
 		],
 		"description": "create a Scale using this \u003ca href=\"/docs/reference/notations/#scale\"\u003eformat\u003c/a\u003e"
 	},
@@ -252,13 +245,6 @@
 		"description": "puts a musical object on a track to start at a specific bar"
 	},
 	"Transpose operator": {
-		"prefix": "tran",
-		"body": [
-			"transpose(${1:semitones},${2:sequenceable})"
-		],
-		"description": "change the pitch with a delta of semitones"
-	},
-	"Transpose operator [pitch]": {
 		"prefix": "tran",
 		"body": [
 			"transpose(${1:semitones},${2:sequenceable})"

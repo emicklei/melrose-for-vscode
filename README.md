@@ -41,4 +41,4 @@ See [CHANGELOG](https://github.com/emicklei/melrose-for-vscode/blob/master/CHANG
 
 Software is licensed under [MIT](LICENSE).
 
-&copy; 2019-2021 [ernestmicklei.com](http://ernestmicklei.com)
+&copy; 2025 [ernestmicklei.com](http://ernestmicklei.com)
