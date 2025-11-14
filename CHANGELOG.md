@@ -2,7 +2,7 @@
 
 All notable changes to the "melrose-for-vscode" extension will be documented in this file.
 
-## [0.40.1]
+## [0.45.0]
 
 - Add `when` keyword.
 

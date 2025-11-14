@@ -3,7 +3,7 @@
     "displayName": "Melrose music coding",
     "description": "Interactive music coding with Melrōse",
     "icon": "images/icon.png",
-    "version": "0.44.0",
+    "version": "0.45.0",
     "publisher": "EMicklei",
     "license": "SEE LICENSE IN LICENSE.txt",
     "homepage": "https://github.com/emicklei/melrose-for-vscode/blob/master/README.md",
